@@ -9,7 +9,7 @@
 
 /* You need both these to manage the colors of the links */
 #login a:link, #login a:visited {
-	color: #FFFFFF;
+	color: #FFFFFF;  
 }
 
 #login {
