@@ -1,0 +1,65 @@
+﻿body
+{
+    background-image: url("../images/background.gif");
+    background-repeat:no-repeat;
+    width: 920px;
+    padding-top: 100px;
+    color: Yellow;
+}
+
+/* You need both these to manage the colors of the links */
+#login a:link, #login a:visited {
+	color: #FFFFFF;
+}
+
+.field {
+    float:left;
+}
+
+select {
+    width: 20em;
+}
+#login {
+	padding-right: 28px;
+	float: right;
+	clear: none;
+	color:white;
+	font-family:"";
+	font-weight: normal;
+	font-size: 12px;
+	top: 0px;
+	text-align: center;
+	letter-spacing: +1px;
+}
+
+h1 {
+	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 32px;
+	font-weight: normal;
+	letter-spacing: -4px;
+	text-transform: lowercase;
+}
+h2, h3, h4, h5, h6 {
+	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	font-weight: normal;
+	color: #BBBBBB;
+	text-transform: lowercase;
+	letter-spacing: -2px;
+}
+
+.header {
+    margin: 0; 
+    padding: 5px; 
+    color: #eeeeee; 
+    letter-spacing: -2px; 
+    font-size: 180%;
+}
+
+.menu {
+    font-size: 12px;
+    position:absolute;
+    top: 10px;
+    left: 700px;
+    
+}
