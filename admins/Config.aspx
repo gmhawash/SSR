@@ -5,14 +5,15 @@
     Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
 <%@ Register Assembly="System.Web.Entity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
     Namespace="System.Web.UI.WebControls" TagPrefix="asp" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div>
-    <asp:Label  runat="server" >Departmentsss</asp:Label>
+    <asp:Label ID="Label4"  runat="server" >Departmentsss</asp:Label>
     <asp:GridView ID="DeptGridView" runat="server" CellPadding="4" ForeColor="#333333"
         GridLines="None" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
-        DataKeyNames="Id" DataSourceID="DeptSqlDataSource" ShowFooter="True" OnRowCommand="DataGridView_RowCommand">
+        DataKeyNames="Id" ShowFooter="True"  
+            DataSourceID="ObjectDataSource1">
         <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
         <Columns>
             <asp:TemplateField HeaderText="Code" SortExpression="Code">
@@ -26,6 +27,7 @@
                     <asp:TextBox runat="server" ID="InsertCode" Text='<%# Bind("Code") %>' />
                 </FooterTemplate>
             </asp:TemplateField>
+            
             <asp:TemplateField HeaderText="Description" SortExpression="Description">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Description") %>'></asp:TextBox>
@@ -36,14 +38,7 @@
                 <FooterTemplate>
                     <asp:TextBox runat="server" ID="InsertDescription" Text='<%# Bind("Description") %>' />
                 </FooterTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Id" InsertVisible="False" SortExpression="Id" Visible="False">
-                <EditItemTemplate>
-                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("Id") %>'></asp:Label>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("Id") %>'></asp:Label>
-                </ItemTemplate>
+                
             </asp:TemplateField>
             <asp:TemplateField ShowHeader="False">
                 <EditItemTemplate>
@@ -60,9 +55,9 @@
                 </ItemTemplate>
                 <FooterTemplate>
                     <asp:LinkButton runat="server" ID="Insert" Text="Insert" CommandName="InsertNew" />
-                    <asp:LinkButton runat="server" ID="Cancel" Text="Cancel" CommandName="CancelNew" />
                 </FooterTemplate>
             </asp:TemplateField>
+            
         </Columns>
         <EmptyDataTemplate>
             Code:<asp:TextBox runat="server" ID="NoDataCode" />
@@ -76,24 +71,24 @@
         <EditRowStyle BackColor="#999999" />
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
     </asp:GridView>
+
+
+
+        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
+            DataObjectTypeName="System.Guid" DeleteMethod="DeleteProduct" 
+            InsertMethod="AddDept" OldValuesParameterFormatString="original_{0}" 
+            SelectMethod="GetDepts" TypeName="DeptsBLL" UpdateMethod="UpdateDept">
+            <UpdateParameters>
+                <asp:Parameter DbType="Guid" Name="id" />
+                <asp:Parameter Name="code" Type="String" />
+                <asp:Parameter Name="description" Type="String" />
+            </UpdateParameters>
+            <InsertParameters>
+                <asp:Parameter Name="code" Type="String" />
+                <asp:Parameter Name="description" Type="String" />
+            </InsertParameters>
+        </asp:ObjectDataSource>
+        <asp:EntityDataSource ID="EntityDataSource2" runat="server">
+        </asp:EntityDataSource>
 </div>
-    <asp:SqlDataSource ID="DeptSqlDataSource" runat="server" ConflictDetection="CompareAllValues"
-        ConnectionString="<%$ ConnectionStrings:aspnetdbConnectionString1 %>" DeleteCommand="DELETE FROM [Depts] WHERE [Id] = @original_Id AND [Code] = @original_Code AND [Description] = @original_Description"
-        InsertCommand="INSERT INTO [Depts] ([Code], [Description], [Id]) VALUES (@Code, @Description, @Id)"
-        OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT [Code], [Description], [Id] FROM [Depts]"
-        UpdateCommand="UPDATE [Depts] SET [Code] = @Code, [Description] = @Description WHERE [Id] = @original_Id AND [Code] = @original_Code AND [Description] = @original_Description"
-        OnInserting="DeptSqlDataSource_Inserting" OnInserted="DeptSqlDataSource_Inserted">
-        <DeleteParameters>
-            <asp:Parameter Name="original_Id" Type="Object" />
-            <asp:Parameter Name="original_Code" Type="String" />
-            <asp:Parameter Name="original_Description" Type="String" />
-        </DeleteParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="Code" Type="String" />
-            <asp:Parameter Name="Description" Type="String" />
-            <asp:Parameter Name="original_Id" Type="Object" />
-            <asp:Parameter Name="original_Code" Type="String" />
-            <asp:Parameter Name="original_Description" Type="String" />
-        </UpdateParameters>
-    </asp:SqlDataSource>
 </asp:Content>

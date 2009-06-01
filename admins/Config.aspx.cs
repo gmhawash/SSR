@@ -15,9 +15,6 @@ public partial class admins_Config : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
- //     DeptsBLL deptBll = new DeptsBLL();
- //     DeptGridView.DataSource = deptBll.GetDepts();
- //     DeptGridView.DataBind();
     }
 
     // here we keep the SqlParameters that we will use to insert new row
@@ -30,45 +27,54 @@ public partial class admins_Config : System.Web.UI.Page
             TextBox tbCode = DeptGridView.Controls[0].Controls[0].FindControl("NoDataCode") as TextBox;
             TextBox tbDescription = DeptGridView.Controls[0].Controls[0].FindControl("NoDataDescription") as TextBox;
 
-            SqlParameter spCode = new SqlParameter("@Code", SqlDbType.VarChar, 10);
-            spCode.Direction = ParameterDirection.Input;
-            spCode.Value = tbCode.Text;
-            insertParameters.Add(spCode);
+            DeptsBLL deptBll = new DeptsBLL();
+            deptBll.AddDept(tbCode.Text, tbDescription.Text);
 
-            SqlParameter spDescription = new SqlParameter("@Description", SqlDbType.VarChar, 30);
-            spDescription.Direction = ParameterDirection.Input;
-            spDescription.Value = tbDescription.Text;
-            insertParameters.Add(spDescription);
+            ////     DeptGridView.DataSource = deptBll.GetDepts();
+            ////     DeptGridView.DataBind();
 
-            // Autogenerate the ID
-            SqlParameter spId = new SqlParameter("@Id", SqlDbType.UniqueIdentifier);
-            spId.Direction = ParameterDirection.Input;
-            spId.Value = Guid.NewGuid();
-            insertParameters.Add(spId);
+            //SqlParameter spCode = new SqlParameter("@Code", SqlDbType.VarChar, 10);
+            //spCode.Direction = ParameterDirection.Input;
+            //spCode.Value = tbCode.Text;
+            //insertParameters.Add(spCode);
 
-            DeptSqlDataSource.Insert();
+            //SqlParameter spDescription = new SqlParameter("@Description", SqlDbType.VarChar, 30);
+            //spDescription.Direction = ParameterDirection.Input;
+            //spDescription.Value = tbDescription.Text;
+            //insertParameters.Add(spDescription);
+
+            //// Autogenerate the ID
+            //SqlParameter spId = new SqlParameter("@Id", SqlDbType.UniqueIdentifier);
+            //spId.Direction = ParameterDirection.Input;
+            //spId.Value = Guid.NewGuid();
+            //insertParameters.Add(spId);
+
+            //DeptSqlDataSource.Insert();
         }
         else if (e.CommandName == "InsertNew")
         {
             TextBox tbCode = DeptGridView.FooterRow.FindControl("InsertCode") as TextBox;
             TextBox tbDescription = DeptGridView.FooterRow.FindControl("InsertDescription") as TextBox;
 
-            SqlParameter spCode = new SqlParameter("@Code", SqlDbType.VarChar, 10);
-            spCode.Direction = ParameterDirection.Input;
-            spCode.Value = tbCode.Text;
-            insertParameters.Add(spCode);
+            DeptsBLL deptBll = new DeptsBLL();
+            deptBll.AddDept(tbCode.Text, tbDescription.Text);
 
-            SqlParameter spDescription = new SqlParameter("@Description", SqlDbType.VarChar, 30);
-            spDescription.Direction = ParameterDirection.Input;
-            spDescription.Value = tbDescription.Text;
-            insertParameters.Add(spDescription);
-            // Autogenerate the ID
-            SqlParameter spId = new SqlParameter("@Id", SqlDbType.UniqueIdentifier);
-            spId.Direction = ParameterDirection.Input;
-            spId.Value = Guid.NewGuid();
-            insertParameters.Add(spId);
+            //SqlParameter spCode = new SqlParameter("@Code", SqlDbType.VarChar, 10);
+            //spCode.Direction = ParameterDirection.Input;
+            //spCode.Value = tbCode.Text;
+            //insertParameters.Add(spCode);
 
-            DeptSqlDataSource.Insert();
+            //SqlParameter spDescription = new SqlParameter("@Description", SqlDbType.VarChar, 30);
+            //spDescription.Direction = ParameterDirection.Input;
+            //spDescription.Value = tbDescription.Text;
+            //insertParameters.Add(spDescription);
+            //// Autogenerate the ID
+            //SqlParameter spId = new SqlParameter("@Id", SqlDbType.UniqueIdentifier);
+            //spId.Direction = ParameterDirection.Input;
+            //spId.Value = Guid.NewGuid();
+            //insertParameters.Add(spId);
+
+            //DeptSqlDataSource.Insert();
         }
     }
     
