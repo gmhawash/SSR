@@ -30,8 +30,15 @@ public class TicketsBLL
 
   [System.ComponentModel.DataObjectMethodAttribute
   (System.ComponentModel.DataObjectMethodType.Select, true)]
-  public Tracker.TicketsDataTable GetTickets()
+  public Tracker.TicketsDataTable GetTickets()                                 
   {
     return Adapter.GetTickets();    
+  }
+
+  [System.ComponentModel.DataObjectMethodAttribute
+  (System.ComponentModel.DataObjectMethodType.Select, false)]
+  public Tracker.TicketsDataTable GetTicketsByRequesterId(Guid Id)
+  {
+    return Adapter.GetTicketsByRequesterId(Id);
   }
 }
