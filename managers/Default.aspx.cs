@@ -9,8 +9,8 @@ public partial class members_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-      SSRsBLL ssrbll = new SSRsBLL();
-      DeptDropDown.DataSource = ssrbll.GetDepts();
+      DeptsBLL deptBll = new DeptsBLL();
+      DeptDropDown.DataSource = deptBll.GetDepts();
       DeptDropDown.DataBind();
     }
 

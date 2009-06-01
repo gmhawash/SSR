@@ -6,10 +6,8 @@
 <div id='Dept' class="field">
     <asp:Label ID="lb_dept" runat="server" Text="Dept: "></asp:Label>
     <asp:DropDownList ID="DeptDropDown" runat="server" 
-        DataTextField="DEPT_NAME" DataValueField="DEPT_NAME" 
+        DataTextField="Description" DataValueField="Description" 
         ></asp:DropDownList>
   </div>
-
-
 </asp:Content>
 
