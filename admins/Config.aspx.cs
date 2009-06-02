@@ -1,93 +1,51 @@
 ﻿using System;
-using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Data.SqlClient;
 using System.Data.Common;
 
 
-public partial class admins_Config : System.Web.UI.Page
+public partial class admins_Default2 : System.Web.UI.Page
 {
-    protected void Page_Load(object sender, EventArgs e)
-    {
-    }
+  protected void Page_Load(object sender, EventArgs e)
+  {
 
-    // here we keep the SqlParameters that we will use to insert new row
-    private List<SqlParameter> insertParameters = new List<SqlParameter>();
+  }
+  protected void NoDataInsert_Click(object sender, EventArgs e)
+  {
+      TextBox tbCode = DeptGridView.Controls[0].Controls[0].FindControl("NoDataCode") as TextBox;
+      TextBox tbDescription = DeptGridView.Controls[0].Controls[0].FindControl("NoDataDescription") as TextBox;
 
-    protected void DataGridView_RowCommand(object sender, GridViewCommandEventArgs e)
-    {
-        if (e.CommandName == "NoDataInsert")
-        {
-            TextBox tbCode = DeptGridView.Controls[0].Controls[0].FindControl("NoDataCode") as TextBox;
-            TextBox tbDescription = DeptGridView.Controls[0].Controls[0].FindControl("NoDataDescription") as TextBox;
+      DeptsBLL deptBll = new DeptsBLL();
+      deptBll.AddDept(tbCode.Text, tbDescription.Text);
+      DeptGridView.DataBind();
+  }
 
-            DeptsBLL deptBll = new DeptsBLL();
-            deptBll.AddDept(tbCode.Text, tbDescription.Text);
+  protected void InsertNew_Click(object sender, EventArgs e)
+  {
+    TextBox tbCode = DeptGridView.FooterRow.FindControl("InsertCode") as TextBox;
+    TextBox tbDescription = DeptGridView.FooterRow.FindControl("InsertDescription") as TextBox;
 
-            ////     DeptGridView.DataSource = deptBll.GetDepts();
-            ////     DeptGridView.DataBind();
+    DeptsBLL deptBll = new DeptsBLL();
+    deptBll.AddDept(tbCode.Text, tbDescription.Text);
+    DeptGridView.DataBind();
+  }
 
-            //SqlParameter spCode = new SqlParameter("@Code", SqlDbType.VarChar, 10);
-            //spCode.Direction = ParameterDirection.Input;
-            //spCode.Value = tbCode.Text;
-            //insertParameters.Add(spCode);
+  protected void GroupInsertFirst_Click(object sender, EventArgs e)
+  {
+    TextBox tb1 = GroupGridView.Controls[0].Controls[0].FindControl("GroupEmptyCode") as TextBox;
+    TextBox tb2 = GroupGridView.Controls[0].Controls[0].FindControl("GroupEmptyName") as TextBox;
+    DropDownList dd = GroupGridView.Controls[0].Controls[0].FindControl("GroupEmptyDeptId") as DropDownList;
 
-            //SqlParameter spDescription = new SqlParameter("@Description", SqlDbType.VarChar, 30);
-            //spDescription.Direction = ParameterDirection.Input;
-            //spDescription.Value = tbDescription.Text;
-            //insertParameters.Add(spDescription);
-
-            //// Autogenerate the ID
-            //SqlParameter spId = new SqlParameter("@Id", SqlDbType.UniqueIdentifier);
-            //spId.Direction = ParameterDirection.Input;
-            //spId.Value = Guid.NewGuid();
-            //insertParameters.Add(spId);
-
-            //DeptSqlDataSource.Insert();
-        }
-        else if (e.CommandName == "InsertNew")
-        {
-            TextBox tbCode = DeptGridView.FooterRow.FindControl("InsertCode") as TextBox;
-            TextBox tbDescription = DeptGridView.FooterRow.FindControl("InsertDescription") as TextBox;
-
-            DeptsBLL deptBll = new DeptsBLL();
-            deptBll.AddDept(tbCode.Text, tbDescription.Text);
-
-            //SqlParameter spCode = new SqlParameter("@Code", SqlDbType.VarChar, 10);
-            //spCode.Direction = ParameterDirection.Input;
-            //spCode.Value = tbCode.Text;
-            //insertParameters.Add(spCode);
-
-            //SqlParameter spDescription = new SqlParameter("@Description", SqlDbType.VarChar, 30);
-            //spDescription.Direction = ParameterDirection.Input;
-            //spDescription.Value = tbDescription.Text;
-            //insertParameters.Add(spDescription);
-            //// Autogenerate the ID
-            //SqlParameter spId = new SqlParameter("@Id", SqlDbType.UniqueIdentifier);
-            //spId.Direction = ParameterDirection.Input;
-            //spId.Value = Guid.NewGuid();
-            //insertParameters.Add(spId);
-
-            //DeptSqlDataSource.Insert();
-        }
-    }
-    
-    protected void DeptSqlDataSource_Inserting(object sender, SqlDataSourceCommandEventArgs e)
-    {
-        e.Command.Parameters.Clear();
-        foreach (SqlParameter p in insertParameters)
-            e.Command.Parameters.Add(p);
-    }
-
-    protected void DeptSqlDataSource_Inserted(object sender, SqlDataSourceStatusEventArgs e)
-    {
-        insertParameters.Clear();
-    }
+    GroupsBLL groupBll = new GroupsBLL();
+    groupBll.AddGroup(tb1.Text, tb2.Text,  new Guid(dd.SelectedItem.Value) );
+    GroupGridView.DataBind();
+  }
 
 }

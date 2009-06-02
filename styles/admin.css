@@ -1,13 +1,28 @@
-﻿body
-{
+﻿html, body {
+    height: 100%
+}
+#container {
+    position:relative;
+    width: 900px;
+    min-height: 80%;
+    padding-top: 100px;
+    color: Orange;
     background-image: url("../images/background_admin.gif");
     background-repeat:no-repeat;
-    width: 920px;
-    padding-top: 100px;
+    background-color: #000040;
     text-align:center;
-    color: Orange;
 }
 
+#content{
+    clear:both;
+}
+#footer {
+    position: absolute;
+    bottom:0;
+    width: 100%;
+    background-color: #000375;
+    height: 2em;
+}
 /* You need both these to manage the colors of the links */
 #login a:link, #login a:visited {
 	color: #FFFFFF;  
@@ -52,9 +67,9 @@ h2, h3, h4, h5, h6 {
 }
 
 .menu {
-    font-size: 12px;
+    font-size: 1.5em;
     position:absolute;
     top: 10px;
     left: 700px;
-    
+    background-color:inherit;
 }
