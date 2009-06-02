@@ -37,15 +37,38 @@ public partial class admins_Default2 : System.Web.UI.Page
     DeptGridView.DataBind();
   }
 
-  protected void GroupInsertFirst_Click(object sender, EventArgs e)
+  protected void GroupInsert(TextBox tb1, TextBox tb2, DropDownList dd)
   {
-    TextBox tb1 = GroupGridView.Controls[0].Controls[0].FindControl("GroupEmptyCode") as TextBox;
-    TextBox tb2 = GroupGridView.Controls[0].Controls[0].FindControl("GroupEmptyName") as TextBox;
-    DropDownList dd = GroupGridView.Controls[0].Controls[0].FindControl("GroupEmptyDeptId") as DropDownList;
-
     GroupsBLL groupBll = new GroupsBLL();
-    groupBll.AddGroup(tb1.Text, tb2.Text,  new Guid(dd.SelectedItem.Value) );
+    groupBll.AddGroup(tb1.Text, tb2.Text, new Guid(dd.SelectedItem.Value));
     GroupGridView.DataBind();
   }
+  protected void GroupInsertFirst_Click(object sender, EventArgs e)
+  {
+    TextBox tb1 = GroupGridView.FooterRow.FindControl("GroupFirstCode") as TextBox;
+    TextBox tb2 = GroupGridView.FooterRow.FindControl("GroupFirstName") as TextBox;
+    DropDownList dd = GroupGridView.Controls[0].Controls[0].FindControl("GroupFirstDeptId") as DropDownList;
 
+    GroupInsert(tb1, tb2, dd);
+  }
+
+  protected void GroupInsert_Click(object sender, EventArgs e)
+  {
+    if (((LinkButton)sender).ID == "InsertFirst")
+    {
+      TextBox tb1 = GroupGridView.Controls[0].Controls[0].FindControl("GroupFirstCode") as TextBox;
+      TextBox tb2 = GroupGridView.Controls[0].Controls[0].FindControl("GroupFirstName") as TextBox;
+      DropDownList dd = GroupGridView.Controls[0].Controls[0].FindControl("GroupFirstDeptId") as DropDownList;
+      GroupInsert(tb1, tb2, dd);
+
+    }
+    else if (((LinkButton)sender).ID == "InsertNew")
+    {
+      TextBox tb1 = GroupGridView.FooterRow.FindControl("GroupCode") as TextBox;
+      TextBox tb2 = GroupGridView.FooterRow.FindControl("GroupName") as TextBox;
+      DropDownList dd = GroupGridView.FooterRow.FindControl("GroupDeptId") as DropDownList;
+      GroupInsert(tb1, tb2, dd);
+
+    }
+  }
 }

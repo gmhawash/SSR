@@ -59,6 +59,17 @@ public class GroupsBLL
     get { return _deptId; }
     set { _deptId = value; }
   }
+
+  public string DeptName
+  {
+    get
+    {
+      DeptsTableAdapter ta = new DeptsTableAdapter();
+      Tracker.DeptsDataTable depts = ta.GetDeptById(_deptId);
+      return ((Tracker.DeptsRow)depts[0]).Description;
+    }
+  }
+
   
   private GroupsTableAdapter _GroupsAdapter = null;
   protected GroupsTableAdapter Adapter
@@ -71,6 +82,7 @@ public class GroupsBLL
     }
   }
 
+
   [System.ComponentModel.DataObjectMethodAttribute
   (System.ComponentModel.DataObjectMethodType.Select, true)]
   public Tracker.GroupsDataTable GetGroups()
@@ -78,6 +90,13 @@ public class GroupsBLL
     return Adapter.GetGroups();
   }
 
+
+  [System.ComponentModel.DataObjectMethodAttribute
+  (System.ComponentModel.DataObjectMethodType.Select, true)]
+  public Tracker.GroupsDataTable GetGroupsWithFK()
+  {
+    return Adapter.GetGroupsWithFK();
+  }
 
   [System.ComponentModel.DataObjectMethodAttribute
   (System.ComponentModel.DataObjectMethodType.Insert, true)]
