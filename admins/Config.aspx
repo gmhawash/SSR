@@ -4,10 +4,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <asp:label ID="Flash" runat="server" Visible="false"/>
     DEPARTMENTS
     <asp:GridView ID="DeptGridView" runat="server" AutoGenerateColumns="False" CellPadding="4"
         DataKeyNames="Id" DataSourceID="DeptDataSource" ForeColor="#333333" GridLines="None"
-        ShowFooter="True" HorizontalAlign="Center">
+        ShowFooter="True" HorizontalAlign="Center" 
+         >
         <RowStyle BackColor="#EFF3FB" />
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" SortExpression="Id" />
@@ -73,7 +75,9 @@
     GROUPS
     <asp:GridView ID="GroupGridView" runat="server" AutoGenerateColumns="False" CellPadding="4"
         DataKeyNames="Id" DataSourceID="GroupDataSource" ForeColor="#333333" GridLines="None"
-        ShowFooter="true" HorizontalAlign="Center">
+        ShowFooter="true" HorizontalAlign="Center" 
+        onrowupdated="GroupGridView_RowUpdated" 
+        onrowupdating="GroupGridView_RowUpdating" >
         <RowStyle BackColor="#EFF3FB" />
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />
@@ -86,7 +90,11 @@
                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("Code") %>'></asp:Label>
                 </ItemTemplate>
                 <FooterTemplate>
-                    <asp:TextBox ID="GroupCode" runat="server" Text='<%# Bind("Code") %>'></asp:TextBox>
+                    <asp:TextBox ID="GroupCode" runat="server" Text='<%# Bind("Code") %>' 
+                        Width="129px"></asp:TextBox>
+                    <asp:CustomValidator ID="CustomValidator1" runat="server" 
+                        ErrorMessage="CustomValidator" 
+                        onservervalidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
                 </FooterTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Name" SortExpression="Name">

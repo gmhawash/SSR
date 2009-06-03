@@ -49,7 +49,10 @@
   void Application_Error(Object sender, EventArgs e)
   {
     // Code that runs when an unhandled error occurs
-
+      Exception ex = Server.GetLastError().GetBaseException();
+      Server.ClearError();
+      Session.Add("FlashError", ex.Message);
+      Response.Redirect(Request.Url.ToString());
   }
 
   void Application_BeginRequest(Object sender, EventArgs e)

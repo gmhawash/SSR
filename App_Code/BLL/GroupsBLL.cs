@@ -8,11 +8,10 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Data.Common;
 using TrackerTableAdapters;
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Data.Common;
 
 
 /// <summary>
@@ -27,7 +26,7 @@ public class GroupsBLL
   private string _name;
   private Guid _deptId;
 
-  public GroupsBLL(){}
+  public GroupsBLL() { }
   public GroupsBLL(Guid id, string code, string name, Guid deptId)
   {
     _Id = id;
@@ -70,7 +69,7 @@ public class GroupsBLL
     }
   }
 
-  
+
   private GroupsTableAdapter _GroupsAdapter = null;
   protected GroupsTableAdapter Adapter
   {
@@ -101,42 +100,41 @@ public class GroupsBLL
   [System.ComponentModel.DataObjectMethodAttribute
   (System.ComponentModel.DataObjectMethodType.Insert, true)]
   public bool AddGroup(string code, string name, Guid deptId)
-{
+  {
 
     // Create a new GroupRow instance 
-  Tracker.GroupsDataTable groups = new Tracker.GroupsDataTable();
-  Tracker.GroupsRow group = groups.NewGroupsRow();
-  group.Code = code;
-  group.Name = name;
-  group.DeptId = deptId;
-  group.Id = Guid.NewGuid();
-  groups.AddGroupsRow(group);
-  int rowsAffected = Adapter.Update(groups);
-  // Return true if precisely one row was inserted,
-  // otherwise false
-return rowsAffected == 1;
-}
+    Tracker.GroupsDataTable groups = new Tracker.GroupsDataTable();
+    Tracker.GroupsRow group = groups.NewGroupsRow();
+
+    group.Code = code;
+    group.Name = name;
+    group.DeptId = deptId;
+    group.Id = Guid.NewGuid();
+    groups.AddGroupsRow(group);
+    int rowsAffected = Adapter.Update(groups);
+    return rowsAffected == 1;
+  }
 
 
   [System.ComponentModel.DataObjectMethodAttribute
   (System.ComponentModel.DataObjectMethodType.Update, true)]
   public bool UpdateGroup(Guid id, string code, string name, Guid deptId)
-{
+  {
 
     // Create a new GroupRow instance 
-  Tracker.GroupsDataTable groups = Adapter.GetGroupById(id);
-  if (groups.Count == 0)
-    return false;
+    Tracker.GroupsDataTable groups = Adapter.GetGroupById(id);
+    if (groups.Count == 0)
+      return false;
 
-  Tracker.GroupsRow group = groups[0];
-  group.Code = code;
-  group.Name = name;
-  group.DeptId = deptId;
-  int rowsAffected = Adapter.Update(groups);
-  // Return true if precisely one row was inserted,
-  // otherwise false
-  return rowsAffected == 1;
-}
+    Tracker.GroupsRow group = groups[0];
+    group.Code = code;
+    group.Name = name;
+    group.DeptId = deptId;
+    int rowsAffected = Adapter.Update(groups);
+    // Return true if precisely one row was inserted,
+    // otherwise false
+    return rowsAffected == 1;
+  }
 
   [System.ComponentModel.DataObjectMethodAttribute
 (System.ComponentModel.DataObjectMethodType.Update, true)]
@@ -155,11 +153,11 @@ return rowsAffected == 1;
     return rowsAffected == 1;
   }
 
-    [System.ComponentModel.DataObjectMethodAttribute
-  (System.ComponentModel.DataObjectMethodType.Delete, true)]
-    public bool DeleteGroup(GroupsBLL bll)
-    {
-      return DeleteGroup(bll.Id);
-    }
+  [System.ComponentModel.DataObjectMethodAttribute
+(System.ComponentModel.DataObjectMethodType.Delete, true)]
+  public bool DeleteGroup(GroupsBLL bll)
+  {
+    return DeleteGroup(bll.Id);
+  }
 
 }
