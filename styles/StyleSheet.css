@@ -14,10 +14,12 @@
 
 .field {
     float:left;
+    width: 15em;
+    margin-left: 1em;
 }
 
 select {
-    width: 10em;
+    width: 15em;
 }
 #login {
 	padding-right: 28px;

@@ -88,8 +88,4 @@ public partial class admins_Default2 : System.Web.UI.Page
       e.KeepInEditMode = true;
     }
   }
-  protected void GroupGridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
-  {
-
-  }
 }

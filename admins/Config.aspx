@@ -76,8 +76,7 @@
     <asp:GridView ID="GroupGridView" runat="server" AutoGenerateColumns="False" CellPadding="4"
         DataKeyNames="Id" DataSourceID="GroupDataSource" ForeColor="#333333" GridLines="None"
         ShowFooter="true" HorizontalAlign="Center" 
-        onrowupdated="GroupGridView_RowUpdated" 
-        onrowupdating="GroupGridView_RowUpdating" >
+        onrowupdated="GroupGridView_RowUpdated"  >
         <RowStyle BackColor="#EFF3FB" />
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" Visible="false" />
@@ -164,4 +163,6 @@
             <asp:Parameter DbType="Guid" Name="deptId" />
         </InsertParameters>
     </asp:ObjectDataSource>
+    
+    
 </asp:Content>

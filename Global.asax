@@ -51,8 +51,12 @@
     // Code that runs when an unhandled error occurs
       Exception ex = Server.GetLastError().GetBaseException();
       Server.ClearError();
-      Session.Add("FlashError", ex.Message);
-      Response.Redirect(Request.Url.ToString());
+      try
+      {
+          Session.Add("FlashError", ex.Message);
+          Response.Redirect(Request.Url.ToString());
+      }
+      catch { }
   }
 
   void Application_BeginRequest(Object sender, EventArgs e)
