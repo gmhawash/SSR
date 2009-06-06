@@ -14,12 +14,50 @@
 
 .field {
     float:left;
-    width: 15em;
-    margin-left: 1em;
+    width: 175px;
+    margin-left: 10px;
+    margin-right: 20px;
+    height: 45px;
+    vertical-align: bottom;
 }
 
+.date {
+    width: 132px;
+}
+.editbox {
+    float:left;
+    width: 98%;
+}
+
+.float_right{
+    text-align:right;
+    padding-right: 50px;
+}
+.narrow{
+    width: 175px;    
+}
+.narrow input {
+    width: 175px;
+}
+.clear {
+    clear:both;
+}
+   fieldset {   
+      -moz-border-radius-bottomleft:7px;  
+      -moz-border-radius-bottomright:7px;  
+      -moz-border-radius-topleft:7px;  
+      -moz-border-radius-topright:7px;  
+      border-radius: 5px;  
+   }  
+
+.required:after {
+    content: '*';
+    color: #DD0000;
+    position: absolute;
+    left: -20;
+}   
 select {
-    width: 15em;
+    width: 175px;
 }
 #login {
 	padding-right: 28px;

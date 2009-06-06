@@ -11,8 +11,8 @@ using System.Data.SqlClient;
 using TrackerTableAdapters;
 
 using System.Collections.Generic;
-using System.Linq;
 using System.Data.Common;
+
 
 
 /// <summary>
@@ -26,7 +26,7 @@ public class DeptsBLL
   private string _code;
   private string _description;
 
-  public DeptsBLL(){}
+  public DeptsBLL() { }
   public DeptsBLL(Guid id, string code, string description)
   {
     _Id = id;
@@ -51,7 +51,9 @@ public class DeptsBLL
     get { return _description; }
     set { _description = value; }
   }
-
+  /// <summary>
+  /// 
+  /// </summary>
   private DeptsTableAdapter _DeptsAdapter = null;
   protected DeptsTableAdapter Adapter
   {
@@ -63,6 +65,11 @@ public class DeptsBLL
     }
   }
 
+
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <returns></returns>
   [System.ComponentModel.DataObjectMethodAttribute
   (System.ComponentModel.DataObjectMethodType.Select, true)]
   public Tracker.DeptsDataTable GetDepts()
@@ -70,52 +77,71 @@ public class DeptsBLL
     return Adapter.GetDepts();
   }
 
-
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="code"></param>
+  /// <param name="description"></param>
+  /// <returns></returns>
   [System.ComponentModel.DataObjectMethodAttribute
   (System.ComponentModel.DataObjectMethodType.Insert, true)]
   public bool AddDept(string code, string description)
-{
+  {
 
     // Create a new DeptRow instance 
-  Tracker.DeptsDataTable depts = new Tracker.DeptsDataTable();
-  Tracker.DeptsRow dept = depts.NewDeptsRow();
-  dept.Code = code;
-  dept.Description = description;
-  dept.Id = Guid.NewGuid();
-  depts.AddDeptsRow(dept);
-  int rowsAffected = Adapter.Update(depts);
-  // Return true if precisely one row was inserted,
-  // otherwise false
-return rowsAffected == 1;
-}
+    Tracker.DeptsDataTable depts = new Tracker.DeptsDataTable();
+    Tracker.DeptsRow dept = depts.NewDeptsRow();
+    dept.Code = code;
+    dept.Description = description;
+    dept.Id = Guid.NewGuid();
+    depts.AddDeptsRow(dept);
+    int rowsAffected = Adapter.Update(depts);
+    // Return true if precisely one row was inserted,
+    // otherwise false
+    return rowsAffected == 1;
+  }
 
-
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="id"></param>
+  /// <param name="code"></param>
+  /// <param name="description"></param>
+  /// <returns></returns>
   [System.ComponentModel.DataObjectMethodAttribute
   (System.ComponentModel.DataObjectMethodType.Update, true)]
   public bool UpdateDept(Guid id, string code, string description)
-{
+  {
 
     // Create a new DeptRow instance 
-  Tracker.DeptsDataTable depts = Adapter.GetDeptById(id);
-  if (depts.Count == 0)
-    return false;
+    Tracker.DeptsDataTable depts = Adapter.GetDeptById(id);
+    if (depts.Count == 0)
+      return false;
 
-  Tracker.DeptsRow dept = depts[0];
-  dept.Code = code;
-  dept.Description = description;
-  int rowsAffected = Adapter.Update(depts);
-  // Return true if precisely one row was inserted,
-  // otherwise false
-  return rowsAffected == 1;
-}
-
+    Tracker.DeptsRow dept = depts[0];
+    dept.Code = code;
+    dept.Description = description;
+    int rowsAffected = Adapter.Update(depts);
+    // Return true if precisely one row was inserted,
+    // otherwise false
+    return rowsAffected == 1;
+  }
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="bll"></param>
+  /// <returns></returns>
   [System.ComponentModel.DataObjectMethodAttribute
 (System.ComponentModel.DataObjectMethodType.Update, true)]
   public bool UpdateDept(DeptsBLL bll)
   {
     return UpdateDept(bll.Id, bll.Code, bll.Description);
   }
-
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="id"></param>
+  /// <returns></returns>
   [System.ComponentModel.DataObjectMethodAttribute
   (System.ComponentModel.DataObjectMethodType.Delete, true)]
   public bool DeleteDept(Guid id)
@@ -126,11 +152,16 @@ return rowsAffected == 1;
     return rowsAffected == 1;
   }
 
-    [System.ComponentModel.DataObjectMethodAttribute
-  (System.ComponentModel.DataObjectMethodType.Delete, true)]
-    public bool DeleteDept(DeptsBLL bll)
-    {
-      return DeleteDept(bll.Id);
-    }
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="bll"></param>
+  /// <returns></returns>
+  [System.ComponentModel.DataObjectMethodAttribute
+(System.ComponentModel.DataObjectMethodType.Delete, true)]
+  public bool DeleteDept(DeptsBLL bll)
+  {
+    return DeleteDept(bll.Id);
+  }
 
 }
