@@ -37,6 +37,7 @@ public struct StructControl
  */
 public partial class managers_Default2 : System.Web.UI.Page
 {
+  Guid m_ticketId;
 
   StructControl[] m_controls = { 
         new StructControl ("Dept", "Description", "Id", "TrackerTableAdapters.DeptsTableAdapter", "GetDepts", "required" ), 
@@ -130,7 +131,12 @@ public partial class managers_Default2 : System.Web.UI.Page
   }
   protected void CreateAndAssign_Click(object sender, EventArgs e)
   {
-
+    if (PageValid())
+    {
+      Create_Click(sender, e);
+      this.Context.Items.Add((object)"TicketId", m_ticketId);
+      Server.Transfer("Assign.aspx", true);
+    }
   }
   protected Guid GetId(string id)
   {
@@ -164,6 +170,7 @@ public partial class managers_Default2 : System.Web.UI.Page
       //bll.estimatedCost = Estimated_Dollars.Text;
       //bll.estimatedHours = Estimated_Hours.Text;
       bll.AddTicket();
+      m_ticketId = bll.Id;
     }
   }
 }

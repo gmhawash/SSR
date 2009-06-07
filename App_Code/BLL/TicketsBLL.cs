@@ -73,7 +73,7 @@ public class TicketsBLL
     Tracker.TicketsDataTable tickets = new Tracker.TicketsDataTable();
 
     Tracker.TicketsRow ticket = tickets.NewTicketsRow();
-    ticket.Id = Guid.NewGuid();
+    Id = ticket.Id = Guid.NewGuid();
     ticket.GroupId = groupId;
     ticket.TeamId = teamId;
     ticket.StatusId = statusId;
@@ -83,7 +83,7 @@ public class TicketsBLL
     ticket.DeptId = deptId;
     ticket.PriorityId = priorityId;
     ticket.ProjectId = projectId;
-    ticket.CanceledBy = canceledBy;
+    //ticket.CanceledBy = canceledBy;
     ticket.CreatedBy = createdBy;
     ticket.RequestedBy = requestedBy;
     ticket.Number = number;
@@ -93,7 +93,7 @@ public class TicketsBLL
     ticket.ActualHours = actualHours;
     ticket.WorkOrderNumber = workOrderNumber;
     ticket.CancelComment = cancelComment;
-    ticket.ReceivedOn = new DateTime(1992,12,12);
+    ticket.ReceivedOn = receivedOn.ToBinary() == 0L ? DateTime.Now : receivedOn;
     //ticket.StartDate = startDate;
     //ticket.EndDate = endDate;
     //ticket.QACompletedDate = qaCompleteDate;
@@ -101,9 +101,10 @@ public class TicketsBLL
     //ticket.QARequired = qaRequired;
     //ticket.QAStartDate = qaStartDate;
     //ticket.CaneledOn = canceledOn;
-    ticket.Number = 1;
-    tickets.AddTicketsRow(ticket);
+    object x = Adapter.MaxTicketNumber();
+    ticket.Number  = (x == null) ? 1 : (int)x + 1;
 
+    tickets.AddTicketsRow(ticket);
     int rowsAffected = Adapter.Update(tickets);
     // Return true if precisely one row was inserted,
     // otherwise false
