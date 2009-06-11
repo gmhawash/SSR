@@ -64,7 +64,7 @@ public class GroupsBLL
     get
     {
       DeptsTableAdapter ta = new DeptsTableAdapter();
-      Tracker.DeptsDataTable depts = ta.GetDeptById(_deptId);
+      Tracker.DeptsDataTable depts = ta.GetDept(_deptId);
       return ((Tracker.DeptsRow)depts[0]).Description;
     }
   }
@@ -92,9 +92,9 @@ public class GroupsBLL
 
   [System.ComponentModel.DataObjectMethodAttribute
   (System.ComponentModel.DataObjectMethodType.Select, true)]
-  public Tracker.GroupsDataTable GetGroupsWithFK()
+  public Tracker.GroupsDataTable GetGroupsWithFKx()
   {
-    return Adapter.GetGroupsWithFK();
+    return Adapter.GetGroupsWithDeptId();
   }
 
   [System.ComponentModel.DataObjectMethodAttribute
@@ -106,7 +106,6 @@ public class GroupsBLL
     Tracker.GroupsDataTable groups = new Tracker.GroupsDataTable();
     Tracker.GroupsRow group = groups.NewGroupsRow();
 
-    group.Code = code;
     group.Name = name;
     group.DeptId = deptId;
     group.Id = Guid.NewGuid();
@@ -122,12 +121,11 @@ public class GroupsBLL
   {
 
     // Create a new GroupRow instance 
-    Tracker.GroupsDataTable groups = Adapter.GetGroupById(id);
+    Tracker.GroupsDataTable groups = Adapter.GetGroup(id);
     if (groups.Count == 0)
       return false;
 
     Tracker.GroupsRow group = groups[0];
-    group.Code = code;
     group.Name = name;
     group.DeptId = deptId;
     int rowsAffected = Adapter.Update(groups);

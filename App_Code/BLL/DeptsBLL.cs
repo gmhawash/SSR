@@ -91,7 +91,6 @@ public class DeptsBLL
     // Create a new DeptRow instance 
     Tracker.DeptsDataTable depts = new Tracker.DeptsDataTable();
     Tracker.DeptsRow dept = depts.NewDeptsRow();
-    dept.Code = code;
     dept.Description = description;
     dept.Id = Guid.NewGuid();
     depts.AddDeptsRow(dept);
@@ -114,12 +113,11 @@ public class DeptsBLL
   {
 
     // Create a new DeptRow instance 
-    Tracker.DeptsDataTable depts = Adapter.GetDeptById(id);
+    Tracker.DeptsDataTable depts = Adapter.GetDept(id);
     if (depts.Count == 0)
       return false;
 
     Tracker.DeptsRow dept = depts[0];
-    dept.Code = code;
     dept.Description = description;
     int rowsAffected = Adapter.Update(depts);
     // Return true if precisely one row was inserted,
