@@ -34,6 +34,8 @@
           </div>
 <div class='header'>
     
+    <asp:LoginStatus ID="LoginStatus1" runat="server" />
+    
     </div>
 
         

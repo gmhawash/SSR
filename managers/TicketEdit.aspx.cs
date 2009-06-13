@@ -37,7 +37,6 @@ public struct StructControl
  */
 public partial class managers_Default2 : System.Web.UI.Page
 {
-  Guid m_ticketId;
 
   StructControl[] m_controls = { 
         new StructControl ("Dept", "Description", "Id", "TrackerTableAdapters.DeptsTableAdapter", "GetDepts", "required" ), 
@@ -74,27 +73,32 @@ public partial class managers_Default2 : System.Web.UI.Page
     //// set initial status to pending...
     DropDownList ddd = Panel1.FindControl("Status") as DropDownList;
     ddd.Enabled = false;
-
-
-
-    ////DeptsBLL deptBll = new DeptsBLL();
-    //DeptDropDown.DataSource = deptBll.GetDepts();
-    //DeptDropDown.DataBind();
   }
 
   void dd_SelectedIndexChanged(object sender, EventArgs e)
   {
-    DropDownList dept = Panel1.FindControl("dept") as DropDownList;
-    DropDownList group = Panel1.FindControl("Group") as DropDownList;
-    DropDownList team = Panel1.FindControl("team") as DropDownList;
+    DropDownList dd = sender as DropDownList;
 
-    GroupsTableAdapter gta = new GroupsTableAdapter();
-    group.DataSource = gta.GetGroupsByDeptId(new Guid(dept.SelectedValue));
-    group.DataBind();
+    if (dd.SelectedItem == null)
+      return;
 
-    TeamsTableAdapter tta = new TeamsTableAdapter();
-    team.DataSource = tta.GetTeamsByGroupId(new Guid(group.SelectedValue));
-    team.DataBind();
+    switch (dd.ID)
+    {                                                                   
+      case "Dept":
+        GroupsTableAdapter gta = new GroupsTableAdapter();
+        DropDownList dst = Panel1.FindControl("Group") as DropDownList;
+        dst.DataSource = gta.GetGroupsByDeptId(new Guid(dd.SelectedValue));
+        dst.DataBind();
+        break;
+      case "Group":
+        TeamsTableAdapter tta = new TeamsTableAdapter();
+        dst = Panel1.FindControl("Team") as DropDownList;
+        dst.DataSource = tta.GetTeamsByGroupId(new Guid(dd.SelectedValue));
+        dst.DataBind();
+        break;
+      case "Team":
+        break;
+    }
 
   }
 
@@ -131,12 +135,7 @@ public partial class managers_Default2 : System.Web.UI.Page
   }
   protected void CreateAndAssign_Click(object sender, EventArgs e)
   {
-    if (PageValid())
-    {
-      Create_Click(sender, e);
-      this.Context.Items.Add((object)"TicketId", m_ticketId);
-      Server.Transfer("Assign.aspx", true);
-    }
+
   }
   protected Guid GetId(string id)
   {
@@ -170,7 +169,6 @@ public partial class managers_Default2 : System.Web.UI.Page
       //bll.estimatedCost = Estimated_Dollars.Text;
       //bll.estimatedHours = Estimated_Hours.Text;
       bll.AddTicket();
-      m_ticketId = bll.Id;
     }
   }
 }
