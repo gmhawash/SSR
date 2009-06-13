@@ -51,8 +51,7 @@ public partial class managers_Default2 : System.Web.UI.Page
 
   protected void Page_Load(object sender, EventArgs e)
   {
-    foreach (StructControl ctrl in m_controls)
-    {
+    foreach (StructControl ctrl in m_controls) {
       ObjectDataSource ods = new ObjectDataSource(ctrl.DataSource, ctrl.SelectMethod);
       ods.DataObjectTypeName = "System.Guid";
       DropDownList dd = new DropDownList();
@@ -62,6 +61,7 @@ public partial class managers_Default2 : System.Web.UI.Page
       dd.DataSource = ods;
       dd.DataBind();
       dd.SelectedIndexChanged += new EventHandler(dd_SelectedIndexChanged);
+      dd.PreRender += new EventHandler(dd_PreRender);
 
       dd.AutoPostBack = true;
       Panel1.Controls.Add(new LiteralControl(string.Format("<div class='field'><label class='{0}'>{1}</label><br/>", ctrl.Required, ctrl.Title)));
@@ -75,6 +75,21 @@ public partial class managers_Default2 : System.Web.UI.Page
     ddd.Enabled = false;
   }
 
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="sender"></param>
+  /// <param name="e"></param>
+  void dd_PreRender(object sender, EventArgs e)
+  {
+    // Clear Team in case the Group is empty...
+    DropDownList dd = sender as DropDownList;
+    if (dd.ID == "Group" && dd.SelectedItem == null) {
+      DropDownList dst = Panel1.FindControl("Team") as DropDownList;
+      dst.Items.Clear();
+    }
+  }
+
   void dd_SelectedIndexChanged(object sender, EventArgs e)
   {
     DropDownList dd = sender as DropDownList;
@@ -82,8 +97,7 @@ public partial class managers_Default2 : System.Web.UI.Page
     if (dd.SelectedItem == null)
       return;
 
-    switch (dd.ID)
-    {                                                                   
+    switch (dd.ID) {
       case "Dept":
         GroupsTableAdapter gta = new GroupsTableAdapter();
         DropDownList dst = Panel1.FindControl("Group") as DropDownList;
@@ -106,12 +120,10 @@ public partial class managers_Default2 : System.Web.UI.Page
   {
     TextBox[] textBoxes = { Summary, Description };
     bool rc = true;
-    foreach (TextBox tb in textBoxes)
-    {
+    foreach (TextBox tb in textBoxes) {
       tb.BorderColor = System.Drawing.ColorTranslator.FromHtml("#770000");
       tb.BorderWidth = 0;
-      if (tb.Text.Trim().Length == 0)
-      {
+      if (tb.Text.Trim().Length == 0) {
         tb.BorderWidth = 5;
         rc = false;
       }
@@ -120,8 +132,7 @@ public partial class managers_Default2 : System.Web.UI.Page
     DropDownList prj = Panel1.FindControl("Project") as DropDownList;
     prj.BorderColor = System.Drawing.ColorTranslator.FromHtml("#770000");
     prj.BorderWidth = 0;
-    if (prj.SelectedValue.Trim().Length == 0)
-    {
+    if (prj.SelectedValue.Trim().Length == 0) {
       prj.BorderWidth = 5;
       rc = false;
     }
@@ -147,8 +158,7 @@ public partial class managers_Default2 : System.Web.UI.Page
   }
   protected void Create_Click(object sender, EventArgs e)
   {
-    if (PageValid())
-    {
+    if (PageValid()) {
       DropDownList dept = Panel1.FindControl("dept") as DropDownList;
       DropDownList group = Panel1.FindControl("Group") as DropDownList;
       DropDownList team = ((DropDownList)Panel1.FindControl("team")) as DropDownList;
