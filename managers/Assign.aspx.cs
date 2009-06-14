@@ -48,8 +48,8 @@ public partial class managers_Default2 : System.Web.UI.Page
       }
     }
 
-    Context.Items.Add((object)"TicketId", m_ticketId);
-    Server.Transfer("ShowTicket.aspx", true);
+    Context.Items.Add("TicketId", m_ticketId);
+    Server.Transfer("ShowTicket.aspx");
   }
 
   /// <summary>

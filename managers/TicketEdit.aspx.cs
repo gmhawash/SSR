@@ -84,9 +84,16 @@ public partial class managers_Default2 : System.Web.UI.Page
   {
     // Clear Team in case the Group is empty...
     DropDownList dd = sender as DropDownList;
-    if (dd.ID == "Group" && dd.SelectedItem == null) {
-      DropDownList dst = Panel1.FindControl("Team") as DropDownList;
-      dst.Items.Clear();
+    if (dd.ID == "Group") {
+      if (dd.SelectedItem == null) {
+        DropDownList dst = Panel1.FindControl("Team") as DropDownList;
+        dst.Items.Clear();
+      } else {
+        TeamsTableAdapter tta = new TeamsTableAdapter();
+        DropDownList dst = Panel1.FindControl("Team") as DropDownList;
+        dst.DataSource = tta.GetTeamsByGroupId(new Guid(dd.SelectedValue));
+        dst.DataBind();
+      }
     }
   }
 
@@ -140,14 +147,21 @@ public partial class managers_Default2 : System.Web.UI.Page
     return rc;
   }
 
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="sender"></param>
+  /// <param name="e"></param>
   protected void Discard_Click(object sender, EventArgs e)
   {
 
   }
-  protected void CreateAndAssign_Click(object sender, EventArgs e)
-  {
 
-  }
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="id"></param>
+  /// <returns></returns>
   protected Guid GetId(string id)
   {
     string txt = ((DropDownList)Panel1.FindControl(id)).SelectedValue;
@@ -156,7 +170,13 @@ public partial class managers_Default2 : System.Web.UI.Page
     else
       return new Guid(txt);
   }
-  protected void Create_Click(object sender, EventArgs e)
+
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="sender"></param>
+  /// <param name="e"></param>
+  protected void CreateAndAssign_Click(object sender, EventArgs e)
   {
     if (PageValid()) {
       DropDownList dept = Panel1.FindControl("dept") as DropDownList;
@@ -179,6 +199,8 @@ public partial class managers_Default2 : System.Web.UI.Page
       //bll.estimatedCost = Estimated_Dollars.Text;
       //bll.estimatedHours = Estimated_Hours.Text;
       bll.AddTicket();
+      Context.Items.Add("TicketId", bll.Id);
+      Server.Transfer("Assign.aspx");
     }
   }
 }

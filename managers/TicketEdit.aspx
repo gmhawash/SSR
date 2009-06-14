@@ -4,10 +4,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div class="clear float_right">
+    <div class="float_right">
         <asp:Button ID="Discard" runat="server" Text="Discard" OnClick="Discard_Click" />
         <asp:Button ID="CreateAndAssign" runat="server" Text="Create and Assign" OnClick="CreateAndAssign_Click" />
-        <asp:Button ID="Create" runat="server" Text="Create" OnClick="Create_Click" />
     </div>
     <fieldset style='width: 93%'>
         <asp:Panel ID="Panel1" runat="server">

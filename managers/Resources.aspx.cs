@@ -9,8 +9,6 @@ public partial class managers_Default2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-      TrackerTableAdapters.TicketsTableAdapter ta = new TrackerTableAdapters.TicketsTableAdapter();
-      ShowTicketView.DataSource = ta.GetTicketForShow((Guid)Context.Items["TicketId"]);
-      ShowTicketView.DataBind();
+
     }
 }

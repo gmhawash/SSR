@@ -1,7 +1,4 @@
-﻿body {padding:50px 100px; margin:0; font-family:Tahoma, Geneva, sans-serif; background-image:url(../images/body_bg.jpg);}
-
-.float_left { float:left;}
-.float_right { float:right;}
+body {padding:50px 100px; margin:0; font-family:Tahoma, Geneva, sans-serif; background-image:url(../images/body_bg.jpg);}
 
 .field {
     float:left;
