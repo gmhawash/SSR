@@ -5,18 +5,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:GridView ID="ResourcesGridView" runat="server" AllowPaging="True" 
         AllowSorting="True" AutoGenerateColumns="False" 
-        DataSourceID="ResourcesDataSource">
+        DataSourceID="ResourceDataSource" DataKeyNames="Id" 
+        OnRowDeleted="ResourcesGridView_RowDeleted">
         <Columns>
-            <asp:TemplateField HeaderText="Id" SortExpression="Id">
-                <EditItemTemplate>
-                    <asp:TextBox ID="UserId" runat="server" Text='<%# Bind("Id") %>'></asp:TextBox>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("Id") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:CheckBoxField DataField="Active" HeaderText="Active" 
-                SortExpression="Active" />
+            <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" />
             <asp:BoundField DataField="Username" HeaderText="Username" 
                 SortExpression="Username" ReadOnly="True" />
             <asp:BoundField DataField="DeptName" HeaderText="DeptName" ReadOnly="True" 
@@ -25,18 +17,21 @@
                 SortExpression="TeamName" />
             <asp:BoundField DataField="GroupName" HeaderText="GroupName" ReadOnly="True" 
                 SortExpression="GroupName" />
-            <asp:CommandField ShowDeleteButton="True" />
+            <asp:CheckBoxField DataField="Active" HeaderText="Active" 
+                SortExpression="Active" />
+            <asp:CommandField ShowDeleteButton="True"  />
         </Columns>
     </asp:GridView>
     
-    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="NewResource.aspx">New</asp:HyperLink>
-    <asp:SqlDataSource ID="ResourcesDataSource" runat="server" 
+    <asp:SqlDataSource ID="ResourceDataSource" runat="server" 
         ConnectionString="<%$ ConnectionStrings:aspnetdbConnectionString1 %>" 
-        SelectCommand="spGetResources" SelectCommandType="StoredProcedure" 
-        DeleteCommand="DELETE FROM Resources WHERE (Id = @UserId)" >
+        DeleteCommand="DELETE FROM Resources WHERE (Id = @Id)" 
+        SelectCommand="spGetResources" SelectCommandType="StoredProcedure">
         <DeleteParameters>
-            <asp:Parameter Name="UserId" DbType="Object"  />
+            <asp:Parameter Name="Id" />
         </DeleteParameters>
     </asp:SqlDataSource>
-</asp:Content>
+    
+    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="NewResource.aspx">New</asp:HyperLink>
+    </asp:Content>
 

@@ -33,7 +33,7 @@ public partial class managers_Default2 : System.Web.UI.Page
     {
       CheckBox cb = row.FindControl("SelectUser") as CheckBox;
 
-      Label txt = row.FindControl("UserId") as Label;
+      Label txt = row.FindControl("Id") as Label;
       int nRecords = (int)trta.DoesRecordExist(m_ticketId, new Guid(txt.Text));
 
       if ((nRecords == 0) && cb.Checked)
@@ -49,7 +49,7 @@ public partial class managers_Default2 : System.Web.UI.Page
     }
 
     Context.Items.Add("TicketId", m_ticketId);
-    Server.Transfer("ShowTicket.aspx");
+    Server.Transfer("Tickets.aspx");
   }
 
   /// <summary>
@@ -61,4 +61,5 @@ public partial class managers_Default2 : System.Web.UI.Page
   {
 
   }
+
 }

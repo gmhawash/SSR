@@ -37,6 +37,7 @@ select {
 #logo {color:Navy;font-size:30px; background:url(../images/header.png) no-repeat; height:100px; padding:50px 0 0 30px;}
 #logo a {color:Navy; text-decoration:none;}
 #slogan {float:right; font-size:18px; color:Maroon; padding:60px 30px 0 0;}
+#slogan:after {color:yellow;font-size:small; content :"    Admins Only";position:absolute;margin-top:30px;}
 
 #menu {height:40px; background-image:url(../images/menu_bg.png); margin-top:5px;}
 #menu ul {margin:0; padding:0;}

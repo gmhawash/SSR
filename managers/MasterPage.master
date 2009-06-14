@@ -32,7 +32,7 @@
                 <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
                 <StaticHoverStyle BackColor="#284E98" ForeColor="White" />
                 <Items>
-                    <asp:MenuItem NavigateUrl="ListSSRs.aspx" Text="Tickets" Value="0"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="Tickets.aspx" Text="Tickets" Value="0"></asp:MenuItem>
                     <asp:MenuItem Text=" | " Enabled="false"></asp:MenuItem>
                     <asp:MenuItem NavigateUrl="Resources.aspx" Text="Resources" Value="1"></asp:MenuItem>
                     <asp:MenuItem Text=" | " Enabled="false"></asp:MenuItem>
@@ -47,6 +47,11 @@
             </div>
         </div>
         </form>
+    <div id='footer'>
+        Logged in as:
+        <asp:LoginName ID="LoginName1" runat="server" />
+        <div class="float_right">Developed by: <asp:hyperlink ID="Hyperlink1" runat="server" NavigateUrl="http://www.zaytona.com">Zaytona.com, LLC</asp:hyperlink></div>
+    </div>        
     </div>
 </body>
 </html>
