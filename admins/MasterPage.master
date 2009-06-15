@@ -17,7 +17,7 @@
             <div id='logo'>
                 Keizer-Salem School District</div>
             <div id='login'>
-                <asp:LoginStatus ID="LoginStatus" runat="server" />
+                <asp:LoginStatus ID="LoginStatus" runat="server" LogoutAction="RedirectToLoginPage" />
             </div>
         </div>
         <div id="menu">
