@@ -6,8 +6,6 @@
 
   void Application_Start(Object sender, EventArgs e)
   {
-
-      
     string[] roles = Roles.GetAllRoles();
     /*      MembershipUserCollection muc = Membership.GetAllUsers();
         foreach (MembershipUser user in muc) {

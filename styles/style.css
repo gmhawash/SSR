@@ -8,6 +8,19 @@ body {padding:50px 100px; margin:0; font-family:Tahoma, Geneva, sans-serif; back
     height: 45px;
     vertical-align: bottom;
 }
+.field div {
+    font-weight:bolder;
+    color: Maroon;
+    width: 7em;
+    float:left;
+}
+
+.field span {
+    position: relative;
+    left: 30px;
+    font-family: Verdana Aharoni Arial Sans-Serif;
+    font-size: 110%;
+}
 
 .date {
     width: 132px;
@@ -25,6 +38,24 @@ body {padding:50px 100px; margin:0; font-family:Tahoma, Geneva, sans-serif; back
 }   
 select {
     width: 175px;
+}
+
+tab-normal {
+
+}
+
+.tab_hover {
+    background-color: Blue;
+}
+
+
+.tab_normal {
+      -moz-border-radius-topleft:7px;  
+      -moz-border-radius-topright:7px;  
+      border-radius: 5px;  
+      border: solid 1px blue;
+      padding: 2px;
+      
 }
 
 #container {background-color:#FFFFFF; padding:10px; width:1024px;}
@@ -79,7 +110,7 @@ select {
 #text ol, #text ul {padding:0; margin:8px 0;}
 #text li {margin-left:40px;}
 
-#footer {height:40px; color:#FFFFFF; font-size:11px; background-image:url(../images/footer_bg.png); clear:both;}
+#footer {padding: 1em; height:40px; color:#FFFFFF; font-size:11px; background-image:url(../images/footer_bg.png); clear:both;}
 #footer a {color:#FFFFFF;}
 #footer a:hover {color:#D9F0FF;}
 #footer_left {float:left; padding:13px 0 0 30px;}

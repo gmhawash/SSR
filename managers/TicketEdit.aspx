@@ -11,6 +11,7 @@
     <fieldset style='width: 93%'>
         <asp:Panel ID="Panel1" runat="server">
         </asp:Panel>
+            <asp:Textbox ID="TicketId" runat="server" Visible="false"></asp:Textbox>
         <div class="field">
             Received Date:
             <asp:TextBox ID="ReceivedDate" CssClass="date" runat="server">
@@ -26,14 +27,15 @@
         <div class="clear">
             <div class='field'>
                 Work Order #<asp:TextBox ID="Work_Order" runat="server"></asp:TextBox></div>
-            <div class='field'>
-                Mandated Date<asp:TextBox ID="Mandated_Date" CssClass="date" runat="server"></asp:TextBox>
-                <a href="javascript:OpenPopupPage('calendar.aspx','<%= Mandated_Date.ClientID %>','<%= Page.IsPostBack %>');">
-                    <img src="../images/icon-calendar.gif" border="0" align="absBottom" width="24" height="23"></a></div>
+            <div class='field'></div>                
             <div class='field'>
                 Estimated Hours<asp:TextBox ID="Estimated_Hours" runat="server"></asp:TextBox></div>
             <div class='field'>
-                Estimated Dollars<asp:TextBox ID="Estimated_Dollars" runat="server"></asp:TextBox></div>
+                Estimated Dollars<asp:TextBox ID="Estimated_Cost" runat="server"></asp:TextBox></div>
+            <div class='field'>
+                Actual Hours<asp:TextBox ID="Actual_Hours" runat="server"></asp:TextBox></div>
+            <div class='field'>
+                Actual Dollars<asp:TextBox ID="Actual_Cost" runat="server"></asp:TextBox></div>
         </div>
         <div class="editbox">
             <label class='required'>

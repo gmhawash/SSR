@@ -9,6 +9,20 @@ body {padding:50px 100px; margin:0; font-family:Tahoma, Geneva, sans-serif; back
     vertical-align: bottom;
 }
 
+.field div {
+    font-weight:bolder;
+    color: Maroon;
+    width: 7em;
+    float:left;
+}
+
+.field span {
+    position: relative;
+    left: 30px;
+    font-family: Verdana Aharoni Arial Sans-Serif;
+    font-size: 110%;
+}
+
 .date {
     width: 132px;
 }
@@ -23,6 +37,7 @@ body {padding:50px 100px; margin:0; font-family:Tahoma, Geneva, sans-serif; back
     position: absolute;
     left: -20;
 }   
+
 select {
     width: 175px;
 }
@@ -54,6 +69,19 @@ select {
       border-radius: 5px;  
    }  
 
+.note {
+    background: silver;
+    padding: 10px;
+    
+}
+
+.note2 {
+    background: white;
+    padding: 10px;
+}
+
+
+
 #main
 {
     background-position: right center;
@@ -79,7 +107,7 @@ select {
 #text ol, #text ul {padding:0; margin:8px 0;}
 #text li {margin-left:40px;}
 
-#footer {height:40px; color:#FFFFFF; font-size:11px; background-image:url(../images/footer_bg.png); clear:both;}
+#footer {padding: 1em; height:40px; color:#FFFFFF; font-size:11px; background-image:url(../images/footer_bg.png); clear:both;}
 #footer a {color:#FFFFFF;}
 #footer a:hover {color:#D9F0FF;}
 #footer_left {float:left; padding:13px 0 0 30px;}

@@ -13,9 +13,9 @@
         <form id="form1" runat="server">
         <div id='header'>
             <div id='slogan'>
-                Resource Tracking System</div>
+                System Service Request</div>
             <div id='logo'>
-                Keizer-Salem School District</div>
+                Salem-Keizer School District</div>
         </div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>

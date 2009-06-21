@@ -6,6 +6,5 @@
     <asp:GridView ID="GridView1" runat="server" DataSourceID="UserDataSource">
 </asp:GridView>
 <asp:SqlDataSource ID="UserDataSource" runat="server"></asp:SqlDataSource>
-<asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
 </asp:Content>
 

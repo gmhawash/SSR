@@ -16,4 +16,18 @@ public partial class managers_Default2 : System.Web.UI.Page
 
       Session.Add("UserId", Membership.GetUser().ProviderUserKey);
     }
+
+    protected void Menu1_MenuItemClick(object sender, MenuEventArgs e) 
+    {
+      MultiView1.ActiveViewIndex = Int32.Parse(e.Item.Value);
+      int i;
+
+      for (i=0; i< Menu1.Items.Count - 1; i++) {
+        if (i == Int32.Parse(e.Item.Value)) {
+          
+        } else {
+          
+        }
+      }
+    }
 }

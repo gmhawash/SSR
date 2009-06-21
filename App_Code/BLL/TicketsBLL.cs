@@ -74,31 +74,31 @@ public class TicketsBLL
 
     Tracker.TicketsRow ticket = tickets.NewTicketsRow();
     Id = ticket.Id = Guid.NewGuid();
-    ticket.GroupId = groupId;
-    ticket.TeamId = teamId;
-    ticket.StatusId = statusId;
-    ticket.Summary = summary;
-    ticket.Description = description;
-    ticket.ProjectId = projectId;
-    ticket.DeptId = deptId;
-    ticket.PriorityId = priorityId;
-    ticket.ProjectId = projectId;
-    //ticket.CanceledBy = canceledBy;
-    ticket.CreatedBy = createdBy;
-    ticket.RequestedBy = requestedBy;
-    ticket.Number = number;
-    ticket.EstimatedCost = estimatedCost;
-    ticket.EstimatedHours = estimatedHours;
-    ticket.ActualCost = actualCost;
-    ticket.ActualHours = actualHours;
-    ticket.WorkOrderNumber = workOrderNumber;
-    ticket.CancelComment = cancelComment;
-    ticket.ReceivedOn = receivedOn.ToBinary() == 0L ? DateTime.Now : receivedOn;
-    //ticket.StartDate = startDate;
+    if (groupId != null) ticket.GroupId = groupId;
+    if (teamId != null) ticket.TeamId = teamId;
+    if (statusId != null) ticket.StatusId = statusId;
+    if (summary != null) ticket.Summary = summary;
+    if (description != null) ticket.Description = description;
+    if (projectId != null) ticket.ProjectId = projectId;
+    if (deptId != null) ticket.DeptId = deptId;
+    if (priorityId != null) ticket.PriorityId = priorityId;
+    if (projectId != null) ticket.ProjectId = projectId;
+    if (canceledBy != null) //ticket.CanceledBy = canceledBy;
+    if (createdBy != null) ticket.CreatedBy = createdBy;
+    if (requestedBy != null) ticket.RequestedBy = requestedBy;
+    if (number != null) ticket.Number = number;
+    if (estimatedCost != null) ticket.EstimatedCost = estimatedCost;
+    if (estimatedHours != null) ticket.EstimatedHours = estimatedHours;
+    if (actualCost != null) ticket.ActualCost = actualCost;
+    if (actualHours != null) ticket.ActualHours = actualHours;
+    if (workOrderNumber != null) ticket.WorkOrderNumber = workOrderNumber;
+    if (cancelComment != null) ticket.CancelComment = cancelComment;
+    if (receivedOn != null) ticket.ReceivedOn = receivedOn.ToBinary() == 0L ? DateTime.Now : receivedOn;
+    // if (startDate != null) ticket.StartDate = startDate;
     //ticket.EndDate = endDate;
     //ticket.QACompletedDate = qaCompleteDate;
     //ticket.QADueDate = qaDueDate;
-    //ticket.QARequired = qaRequired;
+    if (qaRequired != null) ticket.QARequired = qaRequired;
     //ticket.QAStartDate = qaStartDate;
     //ticket.CaneledOn = canceledOn;
     object x = Adapter.MaxTicketNumber();
@@ -111,6 +111,43 @@ public class TicketsBLL
     return rowsAffected == 1;
   }
 
+  [System.ComponentModel.DataObjectMethodAttribute
+  (System.ComponentModel.DataObjectMethodType.Update, true)]
+  public bool Update()
+  {
+    // Create a new DeptRow instance 
+    Tracker.TicketsDataTable tickets = Adapter.GetTicket(Id);
+    if (tickets.Count == 0)
+      return false;
+
+    Tracker.TicketsRow ticket = tickets[0];
+    if (groupId != Guid.Empty ) ticket.GroupId = groupId;
+    if (teamId != Guid.Empty) ticket.TeamId = teamId;
+    if (statusId != Guid.Empty) ticket.StatusId = statusId;
+    if (summary != null) ticket.Summary = summary;
+    if (description != null) ticket.Description = description;
+    if (projectId != Guid.Empty) ticket.ProjectId = projectId;
+    if (deptId != Guid.Empty) ticket.DeptId = deptId;
+    if (priorityId != Guid.Empty) ticket.PriorityId = priorityId;
+    if (createdBy != Guid.Empty) ticket.CreatedBy = createdBy;
+    if (requestedBy != Guid.Empty) ticket.RequestedBy = requestedBy;
+    if (estimatedCost != 0) ticket.EstimatedCost = estimatedCost;
+    if (estimatedHours != 0) ticket.EstimatedHours = estimatedHours;
+    if (actualCost != 0) ticket.ActualCost = actualCost;
+    if (actualHours != 0) ticket.ActualHours = actualHours;
+    if (workOrderNumber != null) ticket.WorkOrderNumber = workOrderNumber;
+    if (cancelComment != null) ticket.CancelComment = cancelComment;
+    if (receivedOn != null) ticket.ReceivedOn = receivedOn.ToBinary() == 0L ? DateTime.Now : receivedOn;
+    if (qaRequired != null) ticket.QARequired = qaRequired;
+    if (canceledBy != Guid.Empty) ticket.CanceledBy = canceledBy;
+    if (canceledOn != null) ticket.CanceledOn = canceledOn.ToBinary() == 0L ? DateTime.Now: canceledOn; ;
+    if (cancelComment != null) ticket.CancelComment = cancelComment;
+
+    int rowsAffected = Adapter.Update(tickets);
+    // Return true if precisely one row was inserted,
+    // otherwise false
+    return rowsAffected == 1;
+  }
 }
 
 

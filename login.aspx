@@ -9,7 +9,7 @@
             BorderColor="#E6E2D8" BorderPadding="4" BorderStyle="Solid" BorderWidth="1px"
             Font-Names="Verdana" Font-Size="0.8em" ForeColor="#333333" 
              onloggedin="Login1_LoggedIn">
-            <TextBoxStyle Font-Size="0.8em" />
+            <TextBoxStyle  />
             <LoginButtonStyle BackColor="#FFFBFF" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px"
                 Font-Names="Verdana" Font-Size="0.8em" ForeColor="#284775" />
             <InstructionTextStyle Font-Italic="True" ForeColor="Black" />

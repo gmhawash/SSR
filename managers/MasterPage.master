@@ -16,7 +16,7 @@
         <form id="form2" runat="server">
         <div id='header'>
             <div id='slogan'>
-                Resource Tracking System</div>
+                System Service Request</div>
             <div id='logo'>
                 Keizer-Salem School District</div>
             <div id='login'>
@@ -36,9 +36,6 @@
                 <StaticHoverStyle BackColor="#284E98" ForeColor="White" />
                 <Items>
                     <asp:MenuItem NavigateUrl="Tickets.aspx" Text="Tickets" Value="0"></asp:MenuItem>
-                    <asp:MenuItem Text=" | " Enabled="false"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="Resources.aspx" Text="Resources" Value="1"></asp:MenuItem>
-                    <asp:MenuItem Text=" | " Enabled="false"></asp:MenuItem>
                     <asp:MenuItem NavigateUrl="Reports.aspx" Text="Reports" Value="1"></asp:MenuItem>
                 </Items>
             </asp:Menu>
@@ -54,7 +51,7 @@
             Logged in as:
             <asp:LoginName ID="LoginName1" runat="server" />
             <div class="float_right">
-                Developed by:
+                By:
                 <asp:HyperLink ID="Hyperlink1" runat="server" NavigateUrl="http://www.zaytona.com">Zaytona.com, LLC</asp:HyperLink></div>
         </div>
     </div>

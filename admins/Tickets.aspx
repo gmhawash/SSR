@@ -16,8 +16,7 @@
                 SortExpression="Number" />
             <asp:BoundField DataField="WorkOrderNumber" HeaderText="WorkOrderNumber" 
                 SortExpression="WorkOrderNumber" />
-            <asp:BoundField DataField="CreatedBy" HeaderText="CreatedBy" 
-                SortExpression="CreatedBy" />
+                <asp:BoundField DataField="Creator" HeaderText="Created By" SortExpression="Created By" />
             <asp:BoundField DataField="Dept" HeaderText="Dept" ReadOnly="True" 
                 SortExpression="Dept" />
             <asp:BoundField DataField="Group" HeaderText="Group" ReadOnly="True" 
@@ -29,15 +28,15 @@
             <asp:BoundField DataField="Priority" HeaderText="Priority" ReadOnly="True" 
                 SortExpression="Priority" />
             <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="True" 
-                SortExpression="Status" />            <asp:BoundField DataField="CanceledBy" HeaderText="CanceledBy" 
-                SortExpression="CanceledBy" />
+                SortExpression="Status" />            
+            <asp:BoundField DataField="Canceler" HeaderText="Canceled By" 
+                SortExpression="Canceled By" />
             <asp:BoundField DataField="Summary" HeaderText="Summary" 
                 SortExpression="Summary" />
             <asp:BoundField DataField="StartDate" HeaderText="StartDate" 
                 SortExpression="StartDate" />
             <asp:BoundField DataField="EndDate" HeaderText="EndDate" 
                 SortExpression="EndDate" />
-            <asp:CommandField ShowDeleteButton="True" />
         </Columns>
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
@@ -50,5 +49,7 @@
         ConnectionString="<%$ ConnectionStrings:aspnetdbConnectionString1 %>" 
         SelectCommand="spGetTicket" SelectCommandType="StoredProcedure">
     </asp:SqlDataSource>
+    <br />
+    <br />
 
 </asp:Content>

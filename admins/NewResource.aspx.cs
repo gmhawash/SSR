@@ -34,7 +34,8 @@ public partial class admins_Default2 : System.Web.UI.Page
   StructControl[] m_controls = { 
         new StructControl ("Dept", "Description", "Id", "TrackerTableAdapters.DeptsTableAdapter", "GetDepts", "required" ), 
         new StructControl ("Group", "Name", "Id", "TrackerTableAdapters.GroupsTableAdapter", "GetGroups", "" ), 
-        new StructControl ("Team", "Name", "Id", "TrackerTableAdapters.TeamsTableAdapter", "GetTeams", "" )
+        new StructControl ("Team", "Name", "Id", "TrackerTableAdapters.TeamsTableAdapter", "GetTeams", "" ),
+        new StructControl ("Role", "RoleName", "RoleId", "TrackerTableAdapters.aspnet_RolesTableAdapter", "GetRoles", "required" )
       };
 
   protected void Page_Load(object sender, EventArgs e)
@@ -99,6 +100,9 @@ public partial class admins_Default2 : System.Web.UI.Page
 
     ResourcesTableAdapter ta = new ResourcesTableAdapter();
     ta.Insert(UserGUID, GetId("Dept"), GetId("Group"), GetId("Team"), true);
-  }
 
+    DropDownList dd = (DropDownList)Panel1.FindControl("Role");
+    Roles.AddUserToRole(CreateUserWizard1.UserName, dd.SelectedItem.Text);
+  }
 }
+                                                                       

@@ -9,6 +9,7 @@ public partial class members_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+      Response.Redirect("Tickets.aspx");
 //      DeptsBLL deptBll = new DeptsBLL();
 //      DeptDropDown.DataSource = deptBll.GetDepts();
 //      DeptDropDown.DataBind();

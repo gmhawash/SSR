@@ -20,11 +20,21 @@
             <asp:BoundField DataField="Team" HeaderText="Team" ReadOnly="True" SortExpression="Team" />
             <asp:BoundField DataField="Priority" HeaderText="Priority" ReadOnly="True" SortExpression="Priority" />
             <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="True" SortExpression="Status" />
-            <asp:BoundField DataField="CanceledBy" HeaderText="CanceledBy" SortExpression="CanceledBy" />
             <asp:BoundField DataField="Summary" HeaderText="Summary" SortExpression="Summary" />
             <asp:BoundField DataField="StartDate" HeaderText="StartDate" SortExpression="StartDate" />
             <asp:BoundField DataField="EndDate" HeaderText="EndDate" SortExpression="EndDate" />
-            <asp:CommandField ShowDeleteButton="True" />
+            <asp:HyperLinkField HeaderText="" 
+                                Text="Edit" 
+                                DataNavigateUrlFields="Id"
+                                DataNavigateUrlFormatString="~/managers/TicketEdit.aspx?Id={0}" />
+            <asp:HyperLinkField HeaderText="" 
+                                Text="Cancel" 
+                                DataNavigateUrlFields="Id"
+                                DataNavigateUrlFormatString="~/managers/Cancel.aspx?Id={0}" />
+            <asp:HyperLinkField HeaderText="" 
+                                Text="Show" 
+                                DataNavigateUrlFields="Id"
+                                DataNavigateUrlFormatString="~/managers/Show.aspx?Id={0}" />
         </Columns>
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />

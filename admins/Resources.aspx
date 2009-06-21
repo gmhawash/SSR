@@ -7,8 +7,16 @@
         AllowSorting="True" AutoGenerateColumns="False" 
         DataSourceID="ResourceDataSource" DataKeyNames="Id" 
         OnRowDeleted="ResourcesGridView_RowDeleted">
+        <RowStyle BackColor="#EFF3FB" />
+        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <EditRowStyle BackColor="#2461BF" />
+        <AlternatingRowStyle BackColor="White" />
+        
         <Columns>
-            <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" />
+            <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="false"/>
             <asp:BoundField DataField="Username" HeaderText="Username" 
                 SortExpression="Username" ReadOnly="True" />
             <asp:BoundField DataField="DeptName" HeaderText="DeptName" ReadOnly="True" 
@@ -19,6 +27,8 @@
                 SortExpression="GroupName" />
             <asp:CheckBoxField DataField="Active" HeaderText="Active" 
                 SortExpression="Active" />
+            <asp:BoundField DataField="RoleName" HeaderText="Role Name" ReadOnly="true" 
+                SortExpression="RoleName" />
             <asp:CommandField ShowDeleteButton="True"  />
         </Columns>
     </asp:GridView>

@@ -12,9 +12,29 @@ public partial class managers_Default2 : System.Web.UI.Page
   private static Guid m_ticketId;
   protected void Page_Load(object sender, EventArgs e)
   {
-    if (!Page.IsPostBack)
-      m_ticketId = (Guid)Context.Items["TicketId"];
+    m_ticketId = (Guid)Session["TicketId"];
+    if (!Page.IsPostBack) {
+      TicketsUsersTableAdapter trta = new TicketsUsersTableAdapter();
+      Tracker.TicketsUsersDataTable dt = trta.GetTicketsByTicketId(m_ticketId);
+
+      foreach (GridViewRow row in Resources.Rows) {
+        Label id = row.FindControl("Id") as Label;
+        foreach (Tracker.TicketsUsersRow tr in dt) {
+          if (tr.UserId.ToString().Equals(id.Text)) {
+            CheckBox cb = row.FindControl("SelectUser") as CheckBox;
+            cb.Checked = true;
+          }
+        }
+      }
+    }
   }
+
+
+  protected void Resources_PreRender(object sender, EventArgs e)
+  {
+
+  }
+
 
   /// <summary>
   /// 
@@ -29,22 +49,20 @@ public partial class managers_Default2 : System.Web.UI.Page
     MembershipUser myObject = Membership.GetUser();
     string UserID = myObject.ProviderUserKey.ToString();
 
-    foreach (GridViewRow row in Resources.Rows)
-    {
+    foreach (GridViewRow row in Resources.Rows) {
+      object name = row.FindControl("Username") as object;
       CheckBox cb = row.FindControl("SelectUser") as CheckBox;
 
       Label txt = row.FindControl("Id") as Label;
-      int nRecords = (int)trta.DoesRecordExist(m_ticketId, new Guid(txt.Text));
+      Guid id = new Guid(txt.Text);
+      int nRecords = (int)trta.DoesRecordExist(m_ticketId, id);
 
-      if ((nRecords == 0) && cb.Checked)
-      {
+      if ((nRecords == 0) && cb.Checked) {
         // store data in database...
-        trta.Insert(new Guid(txt.Text), m_ticketId, DateTime.Now, new Guid(UserID));
-      }
-      else if ((nRecords > 0) && !cb.Checked)
-      {
+        trta.Insert(id, m_ticketId, DateTime.Now, new Guid(UserID));
+      } else if ((nRecords > 0) && !cb.Checked) {
         // delete record...
-        trta.DeleteTicketByUserId(new Guid(UserID), m_ticketId);
+        trta.DeleteTicketByUserId(id, m_ticketId);
       }
     }
 
