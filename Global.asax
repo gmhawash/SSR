@@ -7,18 +7,7 @@
   void Application_Start(Object sender, EventArgs e)
   {
     string[] roles = Roles.GetAllRoles();
-    /*      MembershipUserCollection muc = Membership.GetAllUsers();
-        foreach (MembershipUser user in muc) {
-          foreach (string role in roles) {
-             if(Roles.IsUserInRole(user.UserName, role))
-               Roles.RemoveUserFromRole(user.UserName, role);
-          }
-        }
 
-        foreach (string role in Roles.GetAllRoles ()) {
-          Roles.DeleteRole(role); 
-        }
-    */
     // Code that runs on application startup
     if (Roles.Enabled) {
       string[] asRoles = { "Admin", "Manager", "Provider" };
@@ -27,9 +16,10 @@
           Roles.CreateRole(role);
       }
 
-      roles = Roles.GetAllRoles();
 
-      foreach (string role in roles) {
+      //foreach (string role in roles) 
+        {
+        string role = "Admin";
         MembershipCreateStatus rStatus;
         if (Membership.GetUser(role) == null) {
           Membership.CreateUser(role, string.Format("{0}!!", role), "gm@gmail.com", "what", "it is", true, out rStatus);

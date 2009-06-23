@@ -45,13 +45,13 @@
             </div>
         </div>
         </form>
+        <div id='footer'>
+            Logged in as:
+            <asp:LoginName ID="LoginName1" runat="server" />
+            <div class="float_right">
+                By:
+                <asp:HyperLink ID="Hyperlink1" runat="server" NavigateUrl="http://www.zaytona.com">Zaytona.com, LLC</asp:HyperLink></div>
+        </div>
     </div>
-    <div id='footer'>
-        Logged in as:
-        <asp:LoginName ID="LoginName1" runat="server" />
-        <div class="float_right">By: <asp:hyperlink ID="Hyperlink1" runat="server" NavigateUrl="http://www.zaytona.com">Zaytona.com, LLC</asp:hyperlink></div>
-    </div>        
-
 </body>
 </html>
-

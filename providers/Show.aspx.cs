@@ -59,4 +59,8 @@ public partial class providers_Default2 : System.Web.UI.Page
       ta.Insert(Guid.NewGuid(), text, DateTime.Now, ticketId, author);
       Response.Redirect(Request.Url.AbsoluteUri);
   }
+  protected void Button1_Click(object sender, EventArgs e)
+  {
+    Response.Redirect("Default.aspx");
+  }
 }

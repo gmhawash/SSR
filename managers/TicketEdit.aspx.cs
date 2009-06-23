@@ -126,6 +126,7 @@ public partial class managers_Default2 : System.Web.UI.Page
   /// <param name="e"></param>
   void dd_PreRender(object sender, EventArgs e)
   {
+    return;
     // Clear Team in case the Group is empty...
     if (m_ddTrigger == "Group") {
       DropDownList dd = sender as DropDownList;
@@ -200,7 +201,7 @@ public partial class managers_Default2 : System.Web.UI.Page
   /// <param name="e"></param>
   protected void Discard_Click(object sender, EventArgs e)
   {
-
+    Response.Redirect("Tickets.aspx", true);
   }
 
   /// <summary>
@@ -220,6 +221,15 @@ public partial class managers_Default2 : System.Web.UI.Page
   protected void Update_Click(object sender, EventArgs e)
   {
 
+  }
+
+
+  protected Int32 ToInt(string str)
+  {
+    if (str.Trim().Length > 0)
+      return Convert.ToInt32(str);
+
+    return 0;
   }
   /// <summary>
   /// 
@@ -246,10 +256,10 @@ public partial class managers_Default2 : System.Web.UI.Page
       bll.description = Description.Text;
       bll.qaRequired = NeedsQA.Checked;
       bll.workOrderNumber = Work_Order.Text;
-      bll.estimatedCost = Convert.ToInt32(Estimated_Cost.Text);
-      bll.estimatedHours = Convert.ToInt32(Estimated_Hours.Text);
-      bll.actualCost= Convert.ToInt32(Actual_Cost.Text);
-      bll.actualHours= Convert.ToInt32(Actual_Hours.Text);
+      bll.estimatedCost = ToInt(Estimated_Cost.Text);
+      bll.estimatedHours = ToInt(Estimated_Hours.Text);
+      bll.actualCost= ToInt(Actual_Cost.Text);
+      bll.actualHours= ToInt(Actual_Hours.Text);
       if (((Button)sender).Text == "Update") {
         bll.Id = new Guid(TicketId.Text);
         bll.Update();

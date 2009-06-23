@@ -28,7 +28,7 @@
             <asp:Label ID="ReceivedOn" runat="server" /></div>
         <div class='field'>
             <div>QA Required:</div>
-            <asp:CheckBox ID="QARequired" runat="server" /></div>
+            <asp:CheckBox ID="QARequired" runat="server" Enabled="false"/></div>
         <div class='field'>
         <div>Estimated Hours:</div>
             <asp:Label ID="EstimatedHours" runat="server" /></div>
@@ -60,12 +60,12 @@
         <div>Created By:</div>
             <asp:Label ID="Creator" runat="server" /></div>
     </asp:Panel>
-    </asp:Panel>
     <fieldset>
         Add your note to this ticket:
         <asp:TextBox ID="Note" runat="server" Height="146px" TextMode="MultiLine" Width="876px"></asp:TextBox>
         <br />
         <asp:Button ID="AddNote" runat="server" Text="Add Note" OnClick="AddNote_Click" />
+        <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Done" />
     </fieldset>
     <fieldset>
         <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource2">

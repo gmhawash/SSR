@@ -11,4 +11,8 @@ public partial class Default2 : System.Web.UI.Page
     {
 
     }
+    protected void PasswordRecovery1_SendingMail(object sender, MailMessageEventArgs e)
+    {
+
+    }
 }

@@ -28,7 +28,7 @@
             <asp:Label ID="ReceivedOn" runat="server" /></div>
         <div class='field'>
             <div>QA Required:</div>
-            <asp:CheckBox ID="QARequired" runat="server" /></div>
+            <asp:CheckBox ID="QARequired" runat="server" Enabled="false" /></div>
         <div class='field'>
         <div>Estimated Hours:</div>
             <asp:Label ID="EstimatedHours" runat="server" /></div>
