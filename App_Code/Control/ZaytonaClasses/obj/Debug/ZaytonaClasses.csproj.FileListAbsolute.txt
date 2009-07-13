@@ -1,0 +1,5 @@
+C:\src\dotNet\SSR\App_Code\Control\ZaytonaClasses\obj\Debug\ResolveAssemblyReference.cache
+C:\src\dotNet\SSR\App_Code\Control\ZaytonaClasses\bin\Debug\ZaytonaClasses.dll
+C:\src\dotNet\SSR\App_Code\Control\ZaytonaClasses\bin\Debug\ZaytonaClasses.pdb
+C:\src\dotNet\SSR\App_Code\Control\ZaytonaClasses\obj\Debug\ZaytonaClasses.dll
+C:\src\dotNet\SSR\App_Code\Control\ZaytonaClasses\obj\Debug\ZaytonaClasses.pdb
