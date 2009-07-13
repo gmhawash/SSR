@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
 
-public partial class providers_Tickets : System.Web.UI.Page
+public partial class providers_Tickets : ZaytonaClasses.ZPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {

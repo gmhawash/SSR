@@ -35,8 +35,9 @@
                 <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
                 <StaticHoverStyle BackColor="#284E98" ForeColor="White" />
                 <Items>
-                    <asp:MenuItem NavigateUrl="Tickets.aspx" Text="Tickets" Value="0"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="Tickets.aspx" Text="SSRs" Value="0"></asp:MenuItem>
                     <asp:MenuItem NavigateUrl="Reports.aspx" Text="Reports" Value="1"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="Projects.aspx" Text="Projects" Value="2"></asp:MenuItem>
                 </Items>
             </asp:Menu>
         </div>

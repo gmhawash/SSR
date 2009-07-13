@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 using System.Data.Common;
 
 
-public partial class admins_Default2 : System.Web.UI.Page
+public partial class admins_Default2 : ZaytonaClasses.ZPage
 {
   protected void Page_Load(object sender, EventArgs e)
   {

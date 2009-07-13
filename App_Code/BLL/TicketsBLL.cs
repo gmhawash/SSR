@@ -22,7 +22,7 @@ public class TicketsBLL
   public Guid Id, projectId, deptId, priorityId, statusId, groupId,
                teamId, canceledBy, requestedBy, createdBy;
   public int number, estimatedHours, estimatedCost, actualHours, actualCost;
-  public string summary, description, workOrderNumber, cancelComment;
+  public string summary, description, cancelComment;
   public DateTime receivedOn, startDate, endDate, qaStartDate, qaDueDate, qaCompleteDate,
                    canceledOn;
   public bool qaRequired;
@@ -86,12 +86,11 @@ public class TicketsBLL
     if (canceledBy != null) //ticket.CanceledBy = canceledBy;
     if (createdBy != null) ticket.CreatedBy = createdBy;
     if (requestedBy != null) ticket.RequestedBy = requestedBy;
-    if (number != null) ticket.Number = number;
+    if (number != 0) ticket.Number = number;
     if (estimatedCost != null) ticket.EstimatedCost = estimatedCost;
     if (estimatedHours != null) ticket.EstimatedHours = estimatedHours;
     if (actualCost != null) ticket.ActualCost = actualCost;
     if (actualHours != null) ticket.ActualHours = actualHours;
-    if (workOrderNumber != null) ticket.WorkOrderNumber = workOrderNumber;
     if (cancelComment != null) ticket.CancelComment = cancelComment;
     if (receivedOn != null) ticket.ReceivedOn = receivedOn.ToBinary() == 0L ? DateTime.Now : receivedOn;
     // if (startDate != null) ticket.StartDate = startDate;
@@ -101,7 +100,7 @@ public class TicketsBLL
     if (qaRequired != null) ticket.QARequired = qaRequired;
     //ticket.QAStartDate = qaStartDate;
     //ticket.CaneledOn = canceledOn;
-    object x = Adapter.MaxTicketNumber();
+    object x = Adapter.MaxTicketNumber(ticket.GroupId);
     ticket.Number  = (x == null) ? 1 : (int)x + 1;
 
     tickets.AddTicketsRow(ticket);
@@ -135,7 +134,6 @@ public class TicketsBLL
     if (estimatedHours != 0) ticket.EstimatedHours = estimatedHours;
     if (actualCost != 0) ticket.ActualCost = actualCost;
     if (actualHours != 0) ticket.ActualHours = actualHours;
-    if (workOrderNumber != null) ticket.WorkOrderNumber = workOrderNumber;
     if (cancelComment != null) ticket.CancelComment = cancelComment;
     if (receivedOn != null) ticket.ReceivedOn = receivedOn.ToBinary() == 0L ? DateTime.Now : receivedOn;
     if (qaRequired != null) ticket.QARequired = qaRequired;

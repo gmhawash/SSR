@@ -37,7 +37,6 @@
                                 <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id"
                                     Visible="false" />
                                 <asp:BoundField DataField="Number" HeaderText="Number" SortExpression="Number" />
-                                <asp:BoundField DataField="WorkOrderNumber" HeaderText="WorkOrderNumber" SortExpression="WorkOrderNumber" />
                                 <asp:BoundField DataField="Requester" HeaderText="Requested By" SortExpression="Requester" />
                                 <asp:BoundField DataField="Creator" HeaderText="CreatedBy" SortExpression="Creator" />
                                 <asp:BoundField DataField="Summary" HeaderText="Summary" SortExpression="Summary" />
@@ -76,11 +75,19 @@
                                 <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id"
                                     Visible="false" />
                                 <asp:BoundField DataField="Number" HeaderText="Number" SortExpression="Number" />
-                                <asp:BoundField DataField="WorkOrderNumber" HeaderText="WorkOrderNumber" SortExpression="WorkOrderNumber" />
                                 <asp:BoundField DataField="Requester" HeaderText="Requested By" SortExpression="Requester" />
                                 <asp:BoundField DataField="Creator" HeaderText="CreatedBy" SortExpression="Creator" />
                                 <asp:BoundField DataField="Summary" HeaderText="Summary" SortExpression="Summary" />
                                 <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
+                                <asp:HyperLinkField HeaderText="" 
+                                    Text="assign" 
+                                    DataNavigateUrlFields="Id"
+                                    DataNavigateUrlFormatString="~/managers/assign.aspx?Id={0}" />
+                                <asp:HyperLinkField HeaderText="" 
+                                    Text="edit" 
+                                    DataNavigateUrlFields="Id"
+                                    DataNavigateUrlFormatString="~/managers/TicketEdit.aspx?Id={0}" />
+                                
                             </Columns>
                             <FooterStyle BackColor="#CCCC99" />
                             <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
@@ -113,7 +120,6 @@
                                 <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id"
                                     Visible="false" />
                                 <asp:BoundField DataField="Number" HeaderText="Number" SortExpression="Number" />
-                                <asp:BoundField DataField="WorkOrderNumber" HeaderText="WorkOrderNumber" SortExpression="WorkOrderNumber" />
                                 <asp:BoundField DataField="Requester" HeaderText="Requested By" SortExpression="Requester" />
                                 <asp:BoundField DataField="Creator" HeaderText="CreatedBy" SortExpression="Creator" />
                                 <asp:BoundField DataField="Summary" HeaderText="Summary" SortExpression="Summary" />
@@ -150,7 +156,6 @@
                                 <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id"
                                     Visible="false" />
                                 <asp:BoundField DataField="Number" HeaderText="Number" SortExpression="Number" />
-                                <asp:BoundField DataField="WorkOrderNumber" HeaderText="WorkOrderNumber" SortExpression="WorkOrderNumber" />
                                 <asp:BoundField DataField="Requester" HeaderText="Requested By" SortExpression="Requester" />
                                 <asp:BoundField DataField="Creator" HeaderText="CreatedBy" SortExpression="Creator" />
                                 <asp:BoundField DataField="Summary" HeaderText="Summary" SortExpression="Summary" />

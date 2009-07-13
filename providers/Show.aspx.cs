@@ -9,7 +9,7 @@ using System.Data.Linq;
 using System.Configuration;
 using System.Web.Security;
 
-public partial class providers_Default2 : System.Web.UI.Page
+public partial class providers_Default2 : ZaytonaClasses.ZPage
 {
   protected void Page_Load(object sender, EventArgs e)
   {
@@ -25,7 +25,6 @@ public partial class providers_Default2 : System.Web.UI.Page
     ((Label)View1.FindControl("Id")).Text = ticket.Id.ToString();
     ((Label)View1.FindControl("Number")).Text = ticket.Number.ToString();
 
-    ((Label)View1.FindControl("WorkOrderNumber")).Text = ticket.WorkOrderNumber;
     ((Label)View1.FindControl("Summary")).Text = ticket.Summary;
     ((Label)View1.FindControl("Description")).Text = ticket.Description;
     ((Label)View1.FindControl("ReceivedOn")).Text = ticket.ReceivedOn.ToShortDateString();

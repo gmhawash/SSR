@@ -5,8 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using System.Collections;
 
-public partial class admins_Default2 : System.Web.UI.Page
+public partial class admins_Default2 : ZaytonaClasses.ZPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -21,4 +22,11 @@ public partial class admins_Default2 : System.Web.UI.Page
       MembershipUser mu = Membership.GetUser(Id);
       Membership.DeleteUser(mu.UserName, true);
     }
+
+    protected void ResourcesGridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+
+    
+    }
+
 }

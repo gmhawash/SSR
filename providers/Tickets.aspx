@@ -13,7 +13,6 @@
             <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id"
                 Visible="false" />
             <asp:BoundField DataField="Number" HeaderText="Number" SortExpression="Number" />
-            <asp:BoundField DataField="WorkOrderNumber" HeaderText="WorkOrderNumber" SortExpression="WorkOrderNumber" />
             <asp:BoundField DataField="Creator" HeaderText="Created By" SortExpression="Created By" />
             <asp:BoundField DataField="Dept" HeaderText="Dept" ReadOnly="True" SortExpression="Dept" />
             <asp:BoundField DataField="Group" HeaderText="Group" ReadOnly="True" SortExpression="Group" />

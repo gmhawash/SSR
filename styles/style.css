@@ -1,14 +1,22 @@
 body {padding:50px 100px; margin:0; font-family:Tahoma, Geneva, sans-serif; background-image:url(../images/body_bg.jpg);}
 
+.clear {
+    clear:both;
+}
+.box {
+    width: 80%;
+    height: 4em;
+    clear:both;
+}
+
 .field {
     float:left;
     width: 175px;
-    margin-left: 10px;
     margin-right: 20px;
     height: 45px;
     vertical-align: bottom;
 }
-.field div {
+.field div, .editbox div {
     font-weight:bolder;
     color: Maroon;
     width: 7em;

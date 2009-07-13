@@ -6,7 +6,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="float_right">
         <asp:Button ID="Discard" runat="server" Text="Discard" OnClick="Discard_Click" />
-        <asp:Button ID="CreateAndAssign" runat="server" Text="Create and Assign" OnClick="CreateAndAssign_Click" />
+        <asp:Button ID="Create" runat="server" Text="Create" OnClick="Create_Click" />
+        <asp:Button ID="CreateAndAssign" runat="server" Text="Create and Assign" OnClick="Create_Click" />
     </div>
     <fieldset style='width: 93%'>
         <asp:Panel ID="Panel1" runat="server">
@@ -25,13 +26,6 @@
             Needs QA
         </div>
         <div class="clear">
-            <div class='field'>
-                Work Order #<asp:TextBox ID="Work_Order" runat="server"></asp:TextBox></div>
-            <div class='field'></div>                
-            <div class='field'>
-                Estimated Hours<asp:TextBox ID="Estimated_Hours" runat="server"></asp:TextBox></div>
-            <div class='field'>
-                Estimated Dollars<asp:TextBox ID="Estimated_Cost" runat="server"></asp:TextBox></div>
             <div class='field'>
                 Actual Hours<asp:TextBox ID="Actual_Hours" runat="server"></asp:TextBox></div>
             <div class='field'>

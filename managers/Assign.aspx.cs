@@ -7,12 +7,15 @@ using System.Web.Security;
 using System.Web.UI.WebControls;
 using TrackerTableAdapters;
 
-public partial class managers_Default2 : System.Web.UI.Page
+public partial class managers_Default2 : ZaytonaClasses.ZPage
 {
   private static Guid m_ticketId;
   protected void Page_Load(object sender, EventArgs e)
   {
-    m_ticketId = (Guid)Session["TicketId"];
+    if (!User.Identity.IsAuthenticated)
+      FormsAuthentication.RedirectToLoginPage();
+
+    m_ticketId = new Guid(Request.QueryString["Id"]);
     if (!Page.IsPostBack) {
       TicketsUsersTableAdapter trta = new TicketsUsersTableAdapter();
       Tracker.TicketsUsersDataTable dt = trta.GetTicketsByTicketId(m_ticketId);
@@ -47,6 +50,7 @@ public partial class managers_Default2 : System.Web.UI.Page
     TicketsUsersTableAdapter trta = new TicketsUsersTableAdapter();
 
     MembershipUser myObject = Membership.GetUser();
+    
     string UserID = myObject.ProviderUserKey.ToString();
 
     foreach (GridViewRow row in Resources.Rows) {
@@ -67,7 +71,7 @@ public partial class managers_Default2 : System.Web.UI.Page
     }
 
     Context.Items.Add("TicketId", m_ticketId);
-    Server.Transfer("Tickets.aspx");
+    Server.Transfer(PrevPage);
   }
 
   /// <summary>
@@ -77,7 +81,7 @@ public partial class managers_Default2 : System.Web.UI.Page
   /// <param name="e"></param>
   protected void Cancel_Click(object sender, EventArgs e)
   {
-
+    Server.Transfer(PrevPage);
   }
 
 }

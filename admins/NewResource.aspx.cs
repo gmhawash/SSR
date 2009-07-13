@@ -28,8 +28,9 @@ public struct StructControl
 }
 
 
-public partial class admins_Default2 : System.Web.UI.Page
+public partial class admins_Default2 : ZaytonaClasses.ZPage
 {
+  public static string m_name;
 
   StructControl[] m_controls = { 
         new StructControl ("Dept", "Description", "Id", "TrackerTableAdapters.DeptsTableAdapter", "GetDepts", "required" ), 
@@ -57,7 +58,6 @@ public partial class admins_Default2 : System.Web.UI.Page
       Panel1.Controls.Add(dd);
       Panel1.Controls.Add(new LiteralControl("</div>"));
     }
-
   }
 
   void dd_SelectedIndexChanged(object sender, EventArgs e)
@@ -72,6 +72,8 @@ public partial class admins_Default2 : System.Web.UI.Page
 
   protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
   {
+    Literal1.Text = string.Format("Account for: {0} [{1}]", CreateUserWizard1.UserName, CreateUserWizard1.Email);
+
   }
 
   /// <summary>
@@ -95,6 +97,7 @@ public partial class admins_Default2 : System.Web.UI.Page
   /// <param name="e"></param>
   protected void Wizard_FinishClick(object sender, EventArgs e)
   {
+
     MembershipUser User = Membership.GetUser(CreateUserWizard1.UserName);
     Guid UserGUID = (Guid)User.ProviderUserKey;
 
@@ -103,6 +106,18 @@ public partial class admins_Default2 : System.Web.UI.Page
 
     DropDownList dd = (DropDownList)Panel1.FindControl("Role");
     Roles.AddUserToRole(CreateUserWizard1.UserName, dd.SelectedItem.Text);
+
+    Literal2.Text = string.Format(@"<em>Account created successfully:</em> 
+                                  <br/><br/>Username: {0} 
+                                  <br/>Email: {1}
+                                  <br/>Team: {2}
+                                  <br/>Group: {3}
+                                  <br/>Role: {4}"
+                                  , CreateUserWizard1.UserName, CreateUserWizard1.Email
+                                  , ((DropDownList)Panel1.FindControl("Team")).SelectedItem.Text
+                                  , ((DropDownList)Panel1.FindControl("Group")).SelectedItem.Text
+                                  , ((DropDownList)Panel1.FindControl("Role")).SelectedItem.Text
+                                  );
+
   }
 }
-                                                                       

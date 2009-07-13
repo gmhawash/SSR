@@ -10,7 +10,7 @@ using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
 using ASPNET.StarterKit.BusinessLogicLayer;
 
-public partial class Calendar_aspx : System.Web.UI.Page {
+public partial class Calendar_aspx : ZaytonaClasses.ZPage {
   public string controlToEdit;
   public string isPostBack;
 

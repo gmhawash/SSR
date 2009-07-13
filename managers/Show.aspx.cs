@@ -8,8 +8,9 @@ using TrackerTableAdapters;
 using System.Data.Linq;
 using System.Configuration;
 using System.Web.Security;
+using ZaytonaClasses;
 
-public partial class providers_Default2 : System.Web.UI.Page
+public partial class providers_Default2 : ZPage
 {
   protected void Page_Load(object sender, EventArgs e)
   {
@@ -25,13 +26,10 @@ public partial class providers_Default2 : System.Web.UI.Page
     ((Label)View1.FindControl("Id")).Text = ticket.Id.ToString();
     ((Label)View1.FindControl("Number")).Text = ticket.Number.ToString();
 
-    ((Label)View1.FindControl("WorkOrderNumber")).Text = ticket.WorkOrderNumber;
-    ((Label)View1.FindControl("Summary")).Text = ticket.Summary;
-    ((Label)View1.FindControl("Description")).Text = ticket.Description;
+    ((TextBox)View1.FindControl("Summary")).Text = ticket.Summary;
+    ((TextBox)View1.FindControl("Description")).Text = ticket.Description;
     ((Label)View1.FindControl("ReceivedOn")).Text = ticket.ReceivedOn.ToShortDateString();
     ((CheckBox)View1.FindControl("QARequired")).Checked = ticket.QARequired;
-    ((Label)View1.FindControl("EstimatedHours")).Text = ticket.EstimatedHours.ToString();
-    ((Label)View1.FindControl("EstimatedCost")).Text = ticket.EstimatedCost.ToString();
     ((Label)View1.FindControl("ActualHours")).Text = ticket.ActualHours.ToString();
     ((Label)View1.FindControl("ActualCost")).Text = ticket.ActualCost.ToString();
     //((Label)View1.FindControl("StartDate")).Text = ticket.StartDate.ToShortDateString();

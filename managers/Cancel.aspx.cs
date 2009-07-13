@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using TrackerTableAdapters;
 using System.Web.Security;
 
-public partial class managers_Default2 : System.Web.UI.Page
+public partial class managers_Default2 : ZaytonaClasses.ZPage
 {
   private static Guid m_ticketId;
 
@@ -25,11 +25,11 @@ public partial class managers_Default2 : System.Web.UI.Page
     bll.canceledOn = DateTime.Now;
     bll.Id = m_ticketId;
     bll.Update();
-    Response.Redirect("Tickets.aspx");
+    Server.Transfer(PrevPage);
   }
 
   protected void No_Click(object sender, EventArgs e)
   {
-
+    Server.Transfer(PrevPage);
   }
 }

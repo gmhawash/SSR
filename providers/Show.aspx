@@ -7,21 +7,8 @@
     <asp:Panel ID="View1" runat="server">
         <asp:Label ID="Id" Visible="false" runat="server" />
         <div class='field'>
-            <div>
-                Number:</div>
+            <div>Number:</div>
             <asp:Label ID="Number" runat="server" /></div>
-        <div class='field'>
-            <div>
-                Work Order Number:</div>
-            <asp:Label ID="WorkOrderNumber" runat="server" /></div>
-        <div class='field'>
-            <div>
-                Summary:</div>
-            <asp:Label ID="Summary" runat="server" /></div>
-        <div class='field'>
-            <div>
-                Description:</div>
-            <asp:Label ID="Description" runat="server" /></div>
         <div class='field'>
             <div>
                 Received On:</div>
@@ -29,12 +16,6 @@
         <div class='field'>
             <div>QA Required:</div>
             <asp:CheckBox ID="QARequired" runat="server" Enabled="false"/></div>
-        <div class='field'>
-        <div>Estimated Hours:</div>
-            <asp:Label ID="EstimatedHours" runat="server" /></div>
-        <div class='field'>
-        <div>Estimated Cost:</div>
-            <asp:Label ID="EstimatedCost" runat="server" /></div>
         <div class='field'>
         <div>Acutal Hours:</div>
             <asp:Label ID="ActualHours" runat="server" /></div>
@@ -59,6 +40,21 @@
         <div class='field'>
         <div>Created By:</div>
             <asp:Label ID="Creator" runat="server" /></div>
+
+        <div class='box'>
+            <div>
+            <asp:TextBox ID="Summary" runat="server" /></div>
+
+        <div class='box'>
+            <div>
+                Description:</div>
+                <asp:TextBox ID="Description" runat="server" /></div>
+                
+            <div style="clear:both; float:right;padding:1em;">
+            <div style="clear:both; float:right;padding:1em;">
+        <asp:Button ID="Back" runat="server" Text="Back" PostBackUrl="~/managers/Tickets.aspx" />
+        </div>
+            
     </asp:Panel>
     <fieldset>
         Add your note to this ticket:

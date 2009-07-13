@@ -6,7 +6,9 @@
     <asp:GridView ID="ResourcesGridView" runat="server" AllowPaging="True" 
         AllowSorting="True" AutoGenerateColumns="False" 
         DataSourceID="ResourceDataSource" 
-        OnRowDeleted="ResourcesGridView_RowDeleted">
+        DataKeyNames="Id"
+        OnRowDeleted="ResourcesGridView_RowDeleted"
+         OnRowUpdating="ResourcesGridView_RowUpdating">
         <RowStyle BackColor="#EFF3FB" />
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
@@ -19,8 +21,8 @@
         <AlternatingRowStyle BackColor="White" />
         
         <Columns>
-            <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="false"/>
-            <asp:CheckBoxField DataField="Active" HeaderText="Active" 
+            <asp:BoundField  DataField="Id" ReadOnly="true" HeaderText="Id" SortExpression="Id" Visible="false"/>
+            <asp:CheckBoxField  DataField="Active" HeaderText="Active" 
                 SortExpression="Active" />
             <asp:BoundField DataField="Username" HeaderText="Username" 
                 SortExpression="Username" ReadOnly="True" />
@@ -38,11 +40,12 @@
     
     <asp:SqlDataSource ID="ResourceDataSource" runat="server" 
         ConnectionString="<%$ ConnectionStrings:aspnetdbConnectionString1 %>" 
-        DeleteCommand="DELETE FROM Resources WHERE (Id = @Id)" 
-        SelectCommand="spGetResources" SelectCommandType="StoredProcedure">
-        <DeleteParameters>
-            <asp:Parameter Name="Id" />
-        </DeleteParameters>
+        SelectCommand="spGetResources" SelectCommandType="StoredProcedure" 
+        UpdateCommand="UPDATE [Resources] SET [Active] = @Active WHERE (Id = @Id)">
+        <UpdateParameters>
+              <asp:Parameter Name="Id"/>
+              <asp:Parameter Name="Active" />
+          </UpdateParameters>
     </asp:SqlDataSource>
     
     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="NewResource.aspx">New</asp:HyperLink>

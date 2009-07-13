@@ -35,9 +35,9 @@ public struct StructControl
  * Output:
  * 
  */
-public partial class managers_Default2 : System.Web.UI.Page
+public partial class managers_Default2 : ZaytonaClasses.ZPage
 {
-  string m_ddTrigger=null;
+  string m_ddTrigger = null;
 
   StructControl[] m_controls = { 
         new StructControl ("Dept", "Description", "Id", "TrackerTableAdapters.DeptsTableAdapter", "GetDepts", "required" ), 
@@ -50,34 +50,42 @@ public partial class managers_Default2 : System.Web.UI.Page
         new StructControl ("Requested By", "UserName", "UserId", "TrackerTableAdapters.aspnet_UsersTableAdapter", "GetUsers", "" )
       };
 
+  /// <summary>
+  /// 
+  /// </summary>
+  /// <param name="sender"></param>
+  /// <param name="e"></param>
   protected void Page_Load(object sender, EventArgs e)
   {
 
-      foreach (StructControl ctrl in m_controls) {
-        ObjectDataSource ods = new ObjectDataSource(ctrl.DataSource, ctrl.SelectMethod);
-        ods.DataObjectTypeName = "System.Guid";
-        DropDownList dd = new DropDownList();
-        dd.DataTextField = ctrl.TextField;
-        dd.DataValueField = ctrl.ValueField;
-        dd.ID = ctrl.Title.Replace(' ', '_');
-        dd.DataSource = ods;
-        dd.DataBind();
-        dd.SelectedIndexChanged += new EventHandler(dd_SelectedIndexChanged);
-        dd.PreRender += new EventHandler(dd_PreRender);
+    // create controls from above array...
+    foreach (StructControl ctrl in m_controls) {
+      ObjectDataSource ods = new ObjectDataSource(ctrl.DataSource, ctrl.SelectMethod);
+      ods.DataObjectTypeName = "System.Guid";
+      DropDownList dd = new DropDownList();
+      dd.DataTextField = ctrl.TextField;
+      dd.DataValueField = ctrl.ValueField;
+      dd.ID = ctrl.Title.Replace(' ', '_');
+      dd.DataSource = ods;
+      dd.DataBind();
+      dd.SelectedIndexChanged += new EventHandler(dd_SelectedIndexChanged);
+      dd.PreRender += new EventHandler(dd_PreRender);
 
-        dd.AutoPostBack = true;
-        Panel1.Controls.Add(new LiteralControl(string.Format("<div class='field'><label class='{0}'>{1}</label><br/>", ctrl.Required, ctrl.Title)));
-        Panel1.Controls.Add(dd);
-        Panel1.Controls.Add(new LiteralControl("</div>"));
-      }
+      dd.AutoPostBack = true;
+      Panel1.Controls.Add(new LiteralControl(string.Format("<div class='field'><label class='{0}'>{1}</label><br/>", ctrl.Required, ctrl.Title)));
+      Panel1.Controls.Add(dd);
+      Panel1.Controls.Add(new LiteralControl("</div>"));
+    }
 
-      if (!IsPostBack) {
-        SetText("Created_By", User.Identity.Name, false);
+    if (!IsPostBack) {
+      SetText("Created_By", User.Identity.Name, false);
 
       string Id = Request.QueryString["Id"];
-      if (Id == null)
+      if (Id == null) {
         SetText("Status", "Pending", false);
-      else {
+        SetText("Group", "S&P", true);
+        SetText("Project", "", true);
+      } else {
         TicketsTableAdapter ta = new TicketsTableAdapter();
 
         Tracker.TicketsDataTable dt = ta.GetTicket(new Guid(Id));
@@ -92,11 +100,10 @@ public partial class managers_Default2 : System.Web.UI.Page
         Summary.Text = dt[0].Summary;
         Description.Text = dt[0].Description;
         ReceivedDate.Text = dt[0].ReceivedOn.ToShortDateString();
-        Estimated_Hours.Text = dt[0].EstimatedHours.ToString();
-        Estimated_Cost.Text = dt[0].EstimatedCost.ToString();
         Actual_Hours.Text = dt[0].ActualHours.ToString();
         Actual_Cost.Text = dt[0].ActualCost.ToString();
         TicketId.Text = dt[0].Id.ToString();
+        Create.Text = "Assign";
         CreateAndAssign.Text = "Update";
         CreateAndAssign.OnClientClick = "Update_Click";
         CheckBox cb = Panel1.FindControl("NeedsQA") as CheckBox;
@@ -236,7 +243,7 @@ public partial class managers_Default2 : System.Web.UI.Page
   /// </summary>
   /// <param name="sender"></param>
   /// <param name="e"></param>
-  protected void CreateAndAssign_Click(object sender, EventArgs e)
+  protected void Create_Click(object sender, EventArgs e)
   {
     if (PageValid()) {
       DropDownList dept = Panel1.FindControl("dept") as DropDownList;
@@ -255,19 +262,31 @@ public partial class managers_Default2 : System.Web.UI.Page
       bll.summary = Summary.Text;
       bll.description = Description.Text;
       bll.qaRequired = NeedsQA.Checked;
-      bll.workOrderNumber = Work_Order.Text;
-      bll.estimatedCost = ToInt(Estimated_Cost.Text);
-      bll.estimatedHours = ToInt(Estimated_Hours.Text);
-      bll.actualCost= ToInt(Actual_Cost.Text);
-      bll.actualHours= ToInt(Actual_Hours.Text);
-      if (((Button)sender).Text == "Update") {
-        bll.Id = new Guid(TicketId.Text);
-        bll.Update();
-      }  else
-        bll.AddTicket();
+      bll.actualCost = ToInt(Actual_Cost.Text);
+      bll.actualHours = ToInt(Actual_Hours.Text);
+      switch (((Button)sender).Text) {
+        case "Update":
+          bll.Id = new Guid(TicketId.Text);
+          bll.Update();
+          break;
 
-      Session.Add("TicketId", bll.Id);
-      Server.Transfer("Assign.aspx");
+        case "Create and Assign":
+          bll.AddTicket();
+          goto case "Assign";
+
+        case "Create":
+          bll.AddTicket();
+          break;
+
+        case "Assign":
+          Session.Add("TicketId", (Request.QueryString["Id"] == null) ? bll.Id.ToString() : Request.QueryString["Id"]);
+          Server.Transfer("Assign.aspx?Id=" + ((Request.QueryString["Id"] == null) ? bll.Id.ToString() : Request.QueryString["Id"]));
+          break;
+      }
+
+      Server.Transfer("Tickets.aspx");
     }
+
   }
+
 }

@@ -23,9 +23,6 @@
             <asp:BoundField DataField="Requester" HeaderText="Requested By" />
             <asp:BoundField DataField="Summary" HeaderText="Summary" />
             <asp:BoundField DataField="QARequired" HeaderText="QA Required" />
-            <asp:BoundField DataField="WorkOrderNumber" HeaderText="Work Order Number" />
-            <asp:BoundField DataField="EstimatedHours" HeaderText="Estimated Hours" />
-            <asp:BoundField DataField="EstimatedCost" HeaderText="Estimated Cost" />
             <asp:BoundField DataField="ActualHours" HeaderText="Actual Hours" />
             <asp:BoundField DataField="ActualCost" HeaderText="Actual Cost" />
         </Fields>

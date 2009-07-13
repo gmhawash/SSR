@@ -12,7 +12,6 @@
             <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id"
                 Visible="false" />
             <asp:BoundField DataField="Number" HeaderText="Number" SortExpression="Number" />
-            <asp:BoundField DataField="WorkOrderNumber" HeaderText="WorkOrderNumber" SortExpression="WorkOrderNumber" />
             <asp:BoundField DataField="Creator" HeaderText="Created By" SortExpression="Created By" />
             <asp:BoundField DataField="Dept" HeaderText="Dept" ReadOnly="True" SortExpression="Dept" />
             <asp:BoundField DataField="Group" HeaderText="Group" ReadOnly="True" SortExpression="Group" />
@@ -20,7 +19,11 @@
             <asp:BoundField DataField="Team" HeaderText="Team" ReadOnly="True" SortExpression="Team" />
             <asp:BoundField DataField="Priority" HeaderText="Priority" ReadOnly="True" SortExpression="Priority" />
             <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="True" SortExpression="Status" />
-            <asp:BoundField DataField="Summary" HeaderText="Summary" SortExpression="Summary" />
+            <asp:TemplateField HeaderText="Summary" SortExpression="Summary">
+                <ItemTemplate>
+                    <asp:Literal ID="Label1" runat="server" Text='<%# Utility.TrimString(Eval("Summary")) %>' ></asp:Literal>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="StartDate" HeaderText="StartDate" SortExpression="StartDate" />
             <asp:BoundField DataField="EndDate" HeaderText="EndDate" SortExpression="EndDate" />
             <asp:HyperLinkField HeaderText="" 
