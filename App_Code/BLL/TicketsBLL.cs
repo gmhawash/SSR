@@ -20,11 +20,12 @@ using TrackerTableAdapters;
 public class TicketsBLL
 {
   public Guid Id, projectId, deptId, priorityId, statusId, groupId,
-               teamId, canceledBy, requestedBy, createdBy;
+               teamId, canceledBy, requestedBy, createdBy, businessUnitRep;
   public int number, estimatedHours, estimatedCost, actualHours, actualCost;
   public string summary, description, cancelComment;
   public DateTime receivedOn, startDate, endDate, qaStartDate, qaDueDate, qaCompleteDate,
-                   canceledOn;
+                   canceledOn, userTestDate, userTestCompleteDate, implementationDate, plannedImplementationDate,
+                   createdOn;
   public bool qaRequired;
 
   public TicketsBLL() { }
@@ -60,6 +61,12 @@ public class TicketsBLL
     return Adapter.GetTicketsByRequestedBy(Id);
   }
 
+
+  void SetDate(DateTime src, DateTime dst)
+  {
+    
+  }
+    
   /// <summary>
   /// 
   /// </summary>
@@ -85,6 +92,7 @@ public class TicketsBLL
     if (projectId != null) ticket.ProjectId = projectId;
     if (canceledBy != null) //ticket.CanceledBy = canceledBy;
     if (createdBy != null) ticket.CreatedBy = createdBy;
+    if (businessUnitRep != null) ticket.BusinessUnitRep = businessUnitRep;
     if (requestedBy != null) ticket.RequestedBy = requestedBy;
     if (number != 0) ticket.Number = number;
     if (estimatedCost != null) ticket.EstimatedCost = estimatedCost;
@@ -92,14 +100,17 @@ public class TicketsBLL
     if (actualCost != null) ticket.ActualCost = actualCost;
     if (actualHours != null) ticket.ActualHours = actualHours;
     if (cancelComment != null) ticket.CancelComment = cancelComment;
-    if (receivedOn != null) ticket.ReceivedOn = receivedOn.ToBinary() == 0L ? DateTime.Now : receivedOn;
-    // if (startDate != null) ticket.StartDate = startDate;
-    //ticket.EndDate = endDate;
-    //ticket.QACompletedDate = qaCompleteDate;
-    //ticket.QADueDate = qaDueDate;
+    if (canceledOn != null && canceledOn.ToBinary() != 0L) ticket.CanceledOn = qaCompleteDate;
+
+    if (receivedOn != null && receivedOn.ToBinary() != 0L) ticket.ReceivedOn = receivedOn;
+    if (qaStartDate != null && qaStartDate.ToBinary() != 0L) ticket.QAStartDate = qaStartDate;
+    if (qaCompleteDate != null && qaCompleteDate.ToBinary() != 0L) ticket.QACompletedDate = qaCompleteDate;
+    if (userTestCompleteDate != null && userTestCompleteDate.ToBinary() != 0L) ticket.UserTestCompleteDate = userTestCompleteDate;
+    if (userTestDate != null && userTestDate.ToBinary() != 0L) ticket.UserTestDueDate= userTestDate;
+    if (implementationDate != null && implementationDate.ToBinary() != 0L) ticket.ImplementationDate = implementationDate;
+    ticket.CreatedOn = DateTime.Now;
+    
     if (qaRequired != null) ticket.QARequired = qaRequired;
-    //ticket.QAStartDate = qaStartDate;
-    //ticket.CaneledOn = canceledOn;
     object x = Adapter.MaxTicketNumber(ticket.GroupId);
     ticket.Number  = (x == null) ? 1 : (int)x + 1;
 
@@ -129,17 +140,25 @@ public class TicketsBLL
     if (deptId != Guid.Empty) ticket.DeptId = deptId;
     if (priorityId != Guid.Empty) ticket.PriorityId = priorityId;
     if (createdBy != Guid.Empty) ticket.CreatedBy = createdBy;
+    if (businessUnitRep != null) ticket.BusinessUnitRep = businessUnitRep;
     if (requestedBy != Guid.Empty) ticket.RequestedBy = requestedBy;
     if (estimatedCost != 0) ticket.EstimatedCost = estimatedCost;
     if (estimatedHours != 0) ticket.EstimatedHours = estimatedHours;
     if (actualCost != 0) ticket.ActualCost = actualCost;
     if (actualHours != 0) ticket.ActualHours = actualHours;
     if (cancelComment != null) ticket.CancelComment = cancelComment;
-    if (receivedOn != null) ticket.ReceivedOn = receivedOn.ToBinary() == 0L ? DateTime.Now : receivedOn;
     if (qaRequired != null) ticket.QARequired = qaRequired;
     if (canceledBy != Guid.Empty) ticket.CanceledBy = canceledBy;
-    if (canceledOn != null) ticket.CanceledOn = canceledOn.ToBinary() == 0L ? DateTime.Now: canceledOn; ;
     if (cancelComment != null) ticket.CancelComment = cancelComment;
+
+    if (canceledOn != null && canceledOn.ToBinary() != 0L) ticket.CanceledOn = canceledOn;
+    if (receivedOn != null && receivedOn.ToBinary() != 0L) ticket.ReceivedOn = receivedOn;
+    if (qaStartDate != null && qaStartDate.ToBinary() != 0L) ticket.QAStartDate = qaStartDate;
+    if (qaCompleteDate != null && qaCompleteDate.ToBinary() != 0L) ticket.QACompletedDate = qaCompleteDate;
+    if (userTestCompleteDate != null && userTestCompleteDate.ToBinary() != 0L) ticket.UserTestCompleteDate = userTestCompleteDate;
+    if (userTestDate != null && userTestDate.ToBinary() != 0L) ticket.UserTestDueDate = userTestDate;
+    if (implementationDate != null && implementationDate.ToBinary() != 0L) ticket.ImplementationDate = implementationDate;
+    if (plannedImplementationDate != null && plannedImplementationDate.ToBinary() != 0L) ticket.PlannedImplementationDate = plannedImplementationDate;
 
     int rowsAffected = Adapter.Update(tickets);
     // Return true if precisely one row was inserted,

@@ -16,14 +16,18 @@ public partial class managers_Default2 : ZaytonaClasses.ZPage
       FormsAuthentication.RedirectToLoginPage();
 
     m_ticketId = new Guid(Request.QueryString["Id"]);
-    if (!Page.IsPostBack) {
+    if (!Page.IsPostBack)
+    {
       TicketsUsersTableAdapter trta = new TicketsUsersTableAdapter();
       Tracker.TicketsUsersDataTable dt = trta.GetTicketsByTicketId(m_ticketId);
 
-      foreach (GridViewRow row in Resources.Rows) {
+      foreach (GridViewRow row in Resources.Rows)
+      {
         Label id = row.FindControl("Id") as Label;
-        foreach (Tracker.TicketsUsersRow tr in dt) {
-          if (tr.UserId.ToString().Equals(id.Text)) {
+        foreach (Tracker.TicketsUsersRow tr in dt)
+        {
+          if (tr.UserId.ToString().Equals(id.Text))
+          {
             CheckBox cb = row.FindControl("SelectUser") as CheckBox;
             cb.Checked = true;
           }
@@ -50,10 +54,11 @@ public partial class managers_Default2 : ZaytonaClasses.ZPage
     TicketsUsersTableAdapter trta = new TicketsUsersTableAdapter();
 
     MembershipUser myObject = Membership.GetUser();
-    
     string UserID = myObject.ProviderUserKey.ToString();
+    bool atLeastOneChecked = false;
 
-    foreach (GridViewRow row in Resources.Rows) {
+    foreach (GridViewRow row in Resources.Rows)
+    {
       object name = row.FindControl("Username") as object;
       CheckBox cb = row.FindControl("SelectUser") as CheckBox;
 
@@ -61,17 +66,28 @@ public partial class managers_Default2 : ZaytonaClasses.ZPage
       Guid id = new Guid(txt.Text);
       int nRecords = (int)trta.DoesRecordExist(m_ticketId, id);
 
-      if ((nRecords == 0) && cb.Checked) {
+      if ((nRecords == 0) && cb.Checked)
+      {
         // store data in database...
         trta.Insert(id, m_ticketId, DateTime.Now, new Guid(UserID));
-      } else if ((nRecords > 0) && !cb.Checked) {
+        atLeastOneChecked = true;
+      }
+      else if ((nRecords > 0) && !cb.Checked)
+      {
         // delete record...
         trta.DeleteTicketByUserId(id, m_ticketId);
       }
     }
 
     Context.Items.Add("TicketId", m_ticketId);
-    Server.Transfer(PrevPage);
+
+    TicketsBLL bll = new TicketsBLL();
+    bll.statusId = (Guid)Utility.StatusId(atLeastOneChecked ? "In Progress" : "Pending");
+    bll.Id = new Guid(Request.QueryString["Id"]);
+
+    bll.Update();
+
+    GoBack();
   }
 
   /// <summary>
@@ -81,7 +97,6 @@ public partial class managers_Default2 : ZaytonaClasses.ZPage
   /// <param name="e"></param>
   protected void Cancel_Click(object sender, EventArgs e)
   {
-    Server.Transfer(PrevPage);
+    GoBack();
   }
-
 }

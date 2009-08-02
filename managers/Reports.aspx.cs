@@ -12,9 +12,7 @@ public partial class managers_Default2 : ZaytonaClasses.ZPage
     {
       MembershipUser mu = Membership.GetUser();
       if (mu == null)
-        Server.Execute("~/Login.aspx");
-
-      Session.Add("UserId", Membership.GetUser().ProviderUserKey);
+        Redirect("~/Login.aspx");
     }
 
     protected void Menu1_MenuItemClick(object sender, MenuEventArgs e) 

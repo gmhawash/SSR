@@ -36,7 +36,7 @@
             <asp:LinkButton ID="InsertButton" runat="server" 
                 Text="Insert" OnClick="InsertButton_Click" />
             &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False"
-                CommandName="Cancel" Text="Cancel" />
+                CommandName="Cancel" Text="Cancel" OnClick="Cancel_Click"/>
         </InsertItemTemplate>
         <ItemTemplate>
             Id:

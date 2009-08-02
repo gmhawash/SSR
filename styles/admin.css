@@ -3,13 +3,32 @@
 .float_left { float:left;}
 .float_right { float:right;}
 
-.field {
+.clear {
+    clear:both;
+}
+
+.note {
+    background: silver;
+    padding: 10px;
+    
+}
+.showfield {
     float:left;
-    width: 175px;
+    width: 28em;
     margin-left: 10px;
     margin-right: 20px;
-    height: 45px;
     vertical-align: bottom;
+}
+
+.showfield div, .editbox div {
+    font-weight:bolder;
+    color: Maroon;
+    width: 14em;
+    float:left;
+}
+
+table .showfield{
+    height: 3em;
 }
 
 .date {

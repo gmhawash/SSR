@@ -37,7 +37,7 @@
                 <Items>
                     <asp:MenuItem NavigateUrl="Tickets.aspx" Text="SSRs" Value="0"></asp:MenuItem>
                     <asp:MenuItem NavigateUrl="Reports.aspx" Text="Reports" Value="1"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="Projects.aspx" Text="Projects" Value="2"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="Projects.aspx" Text="Products" Value="2"></asp:MenuItem>
                 </Items>
             </asp:Menu>
         </div>

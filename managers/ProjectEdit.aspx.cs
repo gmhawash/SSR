@@ -26,5 +26,12 @@ public partial class managers_Default2 : ZaytonaClasses.ZPage
       TextBox tb = FormView1.FindControl("NameTextBox") as TextBox;
       CheckBox cb = FormView1.FindControl("ActiveCheckBox") as CheckBox;
       ta.Insert(Guid.NewGuid(), tb.Text, cb.Checked, d[0].Id, g[0].Id);
-    }                                                       
+      GoBack();
+    }
+
+    protected void Cancel_Click(object sender, EventArgs e)
+    {
+      GoBack();
+    }
+
 }

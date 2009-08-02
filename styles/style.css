@@ -9,6 +9,10 @@ body {padding:50px 100px; margin:0; font-family:Tahoma, Geneva, sans-serif; back
     clear:both;
 }
 
+.field input {
+  width: 170px;
+}
+
 .field {
     float:left;
     width: 175px;
@@ -23,14 +27,54 @@ body {padding:50px 100px; margin:0; font-family:Tahoma, Geneva, sans-serif; back
     float:left;
 }
 
+table .field{
+    height: 2em;
+}
+
+
+.showfield {
+    float:left;
+    width: 28em;
+    margin-left: 10px;
+    margin-right: 20px;
+    vertical-align: bottom;
+}
+
+.showfield div, .editbox div {
+    font-weight:bolder;
+    color: Maroon;
+    width: 14em;
+    float:left;
+}
+
+table .showfield{
+    height: 3em;
+}
+
+.panel {
+  clear:both;
+}
+.checkbox {
+    width: 175px;
+    float:left;
+    padding-top: 20px;
+    margin-right: 20px;
+    height: 25px;
+    vertical-align: bottom;
+}
 .field span {
     position: relative;
     left: 30px;
     font-family: Verdana Aharoni Arial Sans-Serif;
     font-size: 110%;
 }
+.note {
+    background: silver;
+    padding: 10px;
+    
+}
 
-.date {
+input.date {
     width: 132px;
 }
 .editbox {

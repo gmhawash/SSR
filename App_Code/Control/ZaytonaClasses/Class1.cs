@@ -22,10 +22,21 @@ namespace ZaytonaClasses
         FormsAuthentication.RedirectToLoginPage();
 
       if (!IsPostBack && Request.UrlReferrer != null)
-        PrevPage = Request.UrlReferrer.AbsolutePath;
+        PrevPage = Request.UrlReferrer.OriginalString;
 
       // Be sure to call the base class's OnLoad method!
       base.OnLoad(e);
     }
+
+    protected void Redirect(string url)
+    {
+      Response.Redirect(this.ResolveUrl(url));
+    }
+
+    protected void GoBack()
+    { 
+      Response.Redirect (PrevPage);
+    }
+
   }
 }

@@ -9,6 +9,11 @@
         AllowPaging="True" AllowSorting="True">
         <RowStyle BackColor="#EFF3FB" />
         <Columns>
+            <asp:TemplateField HeaderText="" SortExpression="">
+                <ItemTemplate>
+                    <asp:Literal ID="Label1" runat="server" Text='<%# Utility.IsNew(Eval("CreatedOn")) %>' ></asp:Literal>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id"
                 Visible="false" />
             <asp:BoundField DataField="Number" HeaderText="Number" SortExpression="Number" />
@@ -24,20 +29,22 @@
                     <asp:Literal ID="Label1" runat="server" Text='<%# Utility.TrimString(Eval("Summary")) %>' ></asp:Literal>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="StartDate" HeaderText="StartDate" SortExpression="StartDate" />
-            <asp:BoundField DataField="EndDate" HeaderText="EndDate" SortExpression="EndDate" />
             <asp:HyperLinkField HeaderText="" 
                                 Text="Edit" 
                                 DataNavigateUrlFields="Id"
                                 DataNavigateUrlFormatString="~/managers/TicketEdit.aspx?Id={0}" />
             <asp:HyperLinkField HeaderText="" 
+                                Text="Show" 
+                                DataNavigateUrlFields="Id"
+                                DataNavigateUrlFormatString="~/managers/Show.aspx?Id={0}" />
+            <asp:HyperLinkField HeaderText="" 
                                 Text="Cancel" 
                                 DataNavigateUrlFields="Id"
                                 DataNavigateUrlFormatString="~/managers/Cancel.aspx?Id={0}" />
             <asp:HyperLinkField HeaderText="" 
-                                Text="Show" 
+                                Text="Assign" 
                                 DataNavigateUrlFields="Id"
-                                DataNavigateUrlFormatString="~/managers/Show.aspx?Id={0}" />
+                                DataNavigateUrlFormatString="~/managers/Assign.aspx?Id={0}" />
         </Columns>
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />

@@ -16,7 +16,7 @@
             <asp:BoundField DataField="Creator" HeaderText="Created By" SortExpression="Created By" />
             <asp:BoundField DataField="Dept" HeaderText="Dept" ReadOnly="True" SortExpression="Dept" />
             <asp:BoundField DataField="Group" HeaderText="Group" ReadOnly="True" SortExpression="Group" />
-            <asp:BoundField DataField="Project" HeaderText="Project" ReadOnly="True" SortExpression="Project" />
+            <asp:BoundField DataField="Project" HeaderText="Product" ReadOnly="True" SortExpression="Project" />
             <asp:BoundField DataField="Team" HeaderText="Team" ReadOnly="True" SortExpression="Team" />
             <asp:BoundField DataField="Priority" HeaderText="Priority" ReadOnly="True" SortExpression="Priority" />
             <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="True" SortExpression="Status" />

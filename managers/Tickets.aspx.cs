@@ -8,7 +8,8 @@ using System.Web.Security;
 
 public partial class managers_Default2 : ZaytonaClasses.ZPage
 {
-    protected void Page_Load(object sender, EventArgs e)
+  
+  protected void Page_Load(object sender, EventArgs e)
     {
       MembershipUser mu = Membership.GetUser();
       if (mu == null)
