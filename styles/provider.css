@@ -41,6 +41,31 @@ body {padding:50px 100px; margin:0; font-family:Tahoma, Geneva, sans-serif; back
 select {
     width: 175px;
 }
+.showfield {
+    float:left;
+    width: 25em;
+    margin-left: 10px;
+    margin-right: 20px;
+    vertical-align: bottom;
+}
+
+.showfield div, .editbox div {
+    font-weight:bolder;
+    color: Maroon;
+    width: 12em;
+    float:left;
+    text-align:right;
+    padding-right:1em;
+    margin-left: -3em;
+}
+
+table .showfield{
+    height: 3.5em;
+    color: Navy;
+}
+.showfield label {
+text-align:right;
+}
 
 #container {background-color:#FFFFFF; padding:10px; width:1024px;}
 #login {float:right; }

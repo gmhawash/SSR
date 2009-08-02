@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
   <asp:Panel ID="View1" runat="server" CssClass="clear">
     <asp:Label ID="Id" Visible="false" runat="server" />
-    <asp:Table ID="Table1" runat="server" Width="900px">
+    <asp:Table ID="Table1" runat="server" >
       <asp:TableRow ID="TableRow1" runat="server" VerticalAlign="Top">
       </asp:TableRow>
       <asp:TableRow ID="TableRow2" runat="server" VerticalAlign="Top">
@@ -15,6 +15,7 @@
       <div style="padding: 1em;">
         <asp:Button ID="Back" runat="server" Text="Back" OnClick="Back_Click" />
       </div>
+      
     <fieldset>
       <div class='editbox'>
         <div>

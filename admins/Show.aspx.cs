@@ -35,15 +35,14 @@ public partial class providers_Default2 : ZPage
     // create controls from above array..
     foreach (string[] col in cols)
     {
-      TableCell tc = new TableCell();
-      TableRow1.Cells.Add(tc);
+      TableCell tc = new TableCell();   TableRow1.Cells.Add(tc);
       foreach (string cell in col)
       {
         string[] cells = cell.Split(';');
         object value = ticket[cells.Length == 1 ? cells[0] : cells[1]];
         if (value.GetType() == typeof(DateTime))
           value = ((DateTime)value).ToShortDateString();
-        tc.Text += "<div class='showfield'><div>" + cells[0] + ": </div>" + value + "</div>";
+        tc.Text += "<div class='showfield'><div>" + cells[0] + ": </div><label>" + value + "</label></div>";
       }
     }
 

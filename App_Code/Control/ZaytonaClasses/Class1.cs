@@ -21,7 +21,8 @@ namespace ZaytonaClasses
       if (!User.Identity.IsAuthenticated)
         FormsAuthentication.RedirectToLoginPage();
 
-      if (!IsPostBack && Request.UrlReferrer != null)
+      if (!IsPostBack && Request.UrlReferrer != null && PrevPage != null)
+      if (!PrevPage.Trim().Equals(Request.UrlReferrer.OriginalString.Trim()))   // only replace if they are not the same exact link..
         PrevPage = Request.UrlReferrer.OriginalString;
 
       // Be sure to call the base class's OnLoad method!
@@ -35,7 +36,7 @@ namespace ZaytonaClasses
 
     protected void GoBack()
     { 
-      Response.Redirect (PrevPage);
+      Redirect (PrevPage == null ? "./Default.aspx" : PrevPage);
     }
 
   }
